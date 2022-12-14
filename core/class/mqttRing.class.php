@@ -31,7 +31,7 @@ class mqttRing extends eqLogic
 		// Parcours des messages
 		foreach( $message as $_key => $_values) {
 			if( $_key == 'config') {
-				log::add(__CLASS__, 'debug', 'Config Message: '.json_encode($_values));
+				log::add(__CLASS__, 'debug', __('Configuration: ', __FILE__) . json_encode($_values));
 				self::handleConfig($_values);
 				continue;
 			} else {
@@ -63,11 +63,11 @@ class mqttRing extends eqLogic
 							imagefilledrectangle($_im, 0, 0, 105, 15, $backcolor);
 							imagestring($_im, 2, 1, 1, date('j/m/y H:i:s'), $textcolor);
 							if (!imagepng($_im, $_img_file, 0)) {
-								log::add(__CLASS__, 'warning', "erreur création image 2");
+								log::add(__CLASS__, 'warning', __('Sauvegarde snapshot impossible.', __FILE__));
 							}
 							imagedestroy($_im);
 						} else {
-							log::add(__CLASS__, 'warning', "erreur création snapshot");
+							log::add(__CLASS__, 'warning', __('Snapshot invalide reçu.', __FILE__));
 						}
 						continue;
 					}
@@ -78,7 +78,7 @@ class mqttRing extends eqLogic
 					// Commande Existante
 					$cmd = $eqLogic->getCmd('info', $_cmdLogicalId);
 					if (!is_object($cmd)) {
-						log::add(__CLASS__, 'debug', "Commande ".$_cmdLogicalId." inconnue dans l'equipement ".$_eqLogicalId);
+						log::add(__CLASS__, 'debug', __('Commande ', __FILE__) . $_cmdLogicalId . __(' inconnue dans l\'equipement ', __FILE__) . $_eqLogicalId);
 						continue;
 					}
 					// Traitement de la valeur
@@ -101,7 +101,7 @@ class mqttRing extends eqLogic
 	public static function handleConfig( $_values ) {
 		// Parcours des configurations
 		foreach( $_values as $uniqID => $sensors ) {
-			log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] Update configuration of: ' . $uniqID);
+			log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Configuration pour ', __FILE__) . $uniqID);
 			// On determine l'eqLogicId
 			$_start = (strlen(config::byKey('mqtt::topic', __CLASS__, 'ring')) + 1);
 			$_eqLogicId = substr($sensors["sensor"]["info"]["availability_topic"], $_start, -7);
@@ -194,7 +194,7 @@ class mqttRing extends eqLogic
 									// Fin default
 								}
 								$cmd->save();
-								log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] Ajout commande Info ' . $uniqID . ':' . $type);
+								log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Info ', __FILE__) . $uniqID . ':' . $type);
 							}
 						}
 						break;
@@ -252,7 +252,7 @@ class mqttRing extends eqLogic
 									$cmd->setDisplay('invertBinary', '1');
 								}
 								$cmd->save();
-								log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] Ajout commande Info ' . $uniqID . ':' . $type);
+								log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Info ', __FILE__) . $uniqID . ':' . $type);
 							}
 						}
 						break;
@@ -283,7 +283,7 @@ class mqttRing extends eqLogic
 									$cmd->setGeneric_type('GENERIC_INFO');
 								}
 								$cmd->save();
-								log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] Ajout commande Info ' . $uniqID . ':' . $type);
+								log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Info ', __FILE__) . $uniqID . ':' . $type);
 							}
 							// Commande Action ?
 							if( array_key_exists('command_topic', $data) ) {
@@ -312,7 +312,7 @@ class mqttRing extends eqLogic
 									$cmda->setTemplate('dashboard', 'core::value');
 									$cmda->setTemplate('mobile', 'core::value');
 									$cmda->save();
-									log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] Ajout commande Action ' . $uniqID . ':' . $type);
+									log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $type);
 								}
 							}
 						}
@@ -349,7 +349,7 @@ class mqttRing extends eqLogic
 									$cmd->setTemplate('mobile', 'default');
 								}
 								$cmd->save();
-								log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] Ajout commande Info ' . $uniqID . ':' . $type);
+								log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Info ', __FILE__) . $uniqID . ':' . $type);
 							}
 							// Commande Action
 							$cmdaLogicId = substr($data["command_topic"], $_subtopicStart);
@@ -378,7 +378,7 @@ class mqttRing extends eqLogic
 									$cmda->setTemplate('mobile', 'core::toggle');
 								}
 								$cmda->save();
-								log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] Ajout commande Action ' . $uniqID . ':' . $type);
+								log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $type);
 							}
 						}
 						break;
@@ -401,7 +401,7 @@ class mqttRing extends eqLogic
 							$cmd->setTemplate('dashboard', 'core::tile');
 							$cmd->setTemplate('mobile', 'core::tile');
 							$cmd->save();
-							log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] Ajout commande Info ' . $uniqID . ': Alarme');
+							log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Info ', __FILE__) . $uniqID . ': Alarme');
 						}
 						// Commandes actions
 						$_modes = array('arm_away','arm_home','disarm');
@@ -428,13 +428,13 @@ class mqttRing extends eqLogic
 									$cmda->setDisplay('icon', '<i class="icon jeedom-off icon_green"></i>');
 								}
 								$cmda->save();
-								log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] Ajout commande Action ' . $uniqID . ':' . $mode);
+								log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $mode);
 							}
 						}
 						break;
 					// Default
 					default:
-						log::add(__CLASS__, 'warning', '[' . $uniqID . '] type non géré : ' . $famille);
+						log::add(__CLASS__, 'warning', '[' . $uniqID . '] ' . __('Type non géré ', __FILE__) . $famille);
 				}
 			}
 		}

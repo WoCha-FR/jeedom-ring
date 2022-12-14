@@ -32,7 +32,7 @@ if (!isConnect()) {
     </div>
     <div class="form-group">
       <label class="col-md-4 control-label">{{Activation des caméras}}
-        <sup><i class="fas fa-question-circle tooltips" title="{{Paramètre 1}}"></i></sup>
+        <sup><i class="fas fa-question-circle tooltips" title="{{Récupere les caméras, sonnette & chimes}}"></i></sup>
       </label>
       <div class="col-md-4">
         <select class="configKey form-control" data-l1key="ring::cameras">
@@ -43,7 +43,7 @@ if (!isConnect()) {
     </div>
     <div class="form-group">
       <label class="col-md-4 control-label">{{Activation des modes}}
-        <sup><i class="fas fa-question-circle tooltips" title="{{Paramètre 2}}"></i></sup>
+        <sup><i class="fas fa-question-circle tooltips" title="{{Modes d'alarmes pour les sites avec caméras uniquement}}"></i></sup>
       </label>
       <div class="col-md-4">
         <select class="configKey form-control" data-l1key="ring::modes">
@@ -54,7 +54,7 @@ if (!isConnect()) {
     </div>
     <div class="form-group">
       <label class="col-md-4 control-label">{{Activation des boutons Panique}}
-        <sup><i class="fas fa-question-circle tooltips" title="{{Paramètre 3}}"></i></sup>
+        <sup><i class="fas fa-question-circle tooltips" title="{{Ajouter les boutons Police, Incendie, ...}}"></i></sup>
       </label>
       <div class="col-md-4">
         <select class="configKey form-control" data-l1key="ring::panic">
@@ -101,5 +101,4 @@ if (!isConnect()) {
       }
     }
   }
-
 </script>

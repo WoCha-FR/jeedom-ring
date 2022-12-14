@@ -16,7 +16,7 @@
  */
 
 if (!isConnect('admin')) {
-	throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non Autorisé}}');
 }
 // Déclaration des variables obligatoires
 $plugin = plugin::byId('mqttRing');
