@@ -1,0 +1,9 @@
+{
+  "plugins\/mqttRing\/core\/class\/mqttRing.class.php": {
+    "Le message reçu n'est pas un message mqttRing": "Le message reçu n'est pas un message mqttRing",
+    "Equipement Inconnu: ": "Equipement Inconnu: ",
+    "Veuillez vérifier la configuration": "Veuillez vérifier la configuration"
+  },
+  "plugins\/mqttRing\/desktop\/js\/mqttRing.js": {},
+  "plugins\/mqttRing\/desktop\/php\/mqttRing.php": {}
+}
