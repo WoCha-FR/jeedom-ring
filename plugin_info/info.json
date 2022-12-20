@@ -19,7 +19,7 @@
   "changelog_beta": "https://wocha-fr.github.io/jeedom-ring/#language#/changelog_beta",
   "documentation_beta": "https://wocha-fr.github.io/jeedom-ring/#language#/index_beta",
   "issue": "https://github.com/WoCha-FR/jeedom-ring/issues",
-  "language": ["fr_FR", "en_US", "sp_SP", "de_DE"],
+  "language": ["fr_FR", "en_US", "es_ES", "de_DE"],
   "compatibility": [
       "rpi",
       "docker",
