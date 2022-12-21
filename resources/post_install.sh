@@ -8,7 +8,7 @@ echo 20 > ${PROGRESS_FILE}
 
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 RING_BRANCH="v5.0.5_Jeedom"
-RSS_VERSION="0.20.0"
+RSS_VERSION="0.20.4"
 FIND_ARCH=`sudo dpkg --print-architecture`
 
 case ${FIND_ARCH} in

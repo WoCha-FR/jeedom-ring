@@ -26,7 +26,7 @@ Ce plugin utilise [ring-mqtt](https://github.com/tsightler/ring-mqtt) modifié p
 - **Topic racine** : Sujet racine que Jeedom doit écouter
 - **Activation des caméras** : Permet de récupérer et piloter les caméras en plus de l'alarme.
 - **Activation des modes** : Permet de simuler le panneau de contrôle de l'alarme pour un site ne disposant que de caméras.
-- **Activation des boutons Panique** : 
+- **Activation des boutons Panique** : Autoriser la création des boutons "Incendie" & "Police".
 - **Identification RING** : Lien vers l'authentification RING et pour voir son statut.
 
 ## Configuration du compte RING
@@ -98,3 +98,9 @@ Il est possible de récuperer les captures et le flux vidéo des caméras RING d
 
 - **URL de snapshot** : http://localhost:55123/snapshot/<camera_id>.png
 - **URL du flux** : rtsp://localhost:8554/<camera_id>_live
+
+## Obtenir l'ID de la caméra :
+
+Rendez-vous sur la page de l'équipement, dans les paramètres spécifiques vous avez le Topic de l'équipement. L'ID de camera se trouva après le dernier **/**
+
+![CameraID](../images/cameraid.png)
