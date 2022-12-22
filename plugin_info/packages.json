@@ -5,7 +5,6 @@
   "apt":{
     "nodejs" : {},
     "curl" : {},
-    "patch" : {},
     "jq" : {},
     "mosquitto-clients" : {}
   },
