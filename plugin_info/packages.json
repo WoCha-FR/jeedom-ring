@@ -1,0 +1,17 @@
+{
+  "plugin" : {
+    "mqtt2" : {}
+  },
+  "apt":{
+    "nodejs" : {},
+    "curl" : {},
+    "jq" : {},
+    "mosquitto-clients" : {}
+  },
+  "pre-install" : {
+    "script" : "plugins/mqttRing/resources/pre_install.sh"
+  },
+  "post-install" : {
+    "script" : "plugins/mqttRing/resources/post_install.sh"
+  }
+}
