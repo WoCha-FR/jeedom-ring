@@ -130,6 +130,7 @@ class mqttRing extends eqLogic
 				$cmd->setTemplate('dashboard', 'core::alert');
 				$cmd->setTemplate('mobile', 'core::alert');
 				$cmd->setAlert('warningif', '#value#==0');
+				$cmd->setAlert('warningduring', '1');
 				$cmd->save();
 			}
 			// Préparation des cmdLogicId
