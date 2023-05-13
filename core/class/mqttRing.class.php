@@ -443,7 +443,6 @@ class mqttRing extends eqLogic
 
   /* Dependencies */
   public static function dependancy_info() {
-		log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] appellée');
     $return = array();
     $return['log'] = log::getPathToLog(__CLASS__ . '_update');
     $return['progress_file'] = jeedom::getTmpFolder(__CLASS__) . '/dependence';
@@ -454,14 +453,20 @@ class mqttRing extends eqLogic
     } else {
       if (config::byKey('lastDependancyInstallTime', __CLASS__) == '') {
         $return['state'] = 'nok';
-      } else if (!file_exists('/usr/local/bin/rtsp-simple-server')) {
+      } else if (!file_exists('/usr/local/bin/go2rtc')) {
         $return['state'] = 'nok';
-      } else if (!is_dir(realpath(dirname(__FILE__) . '/../../resources/mqtt-ring/node_modules'))) {
+			} else if (!file_exists(__DIR__ . '/../../resources/ring-mqtt/ring-mqtt.js')) {
+				$return['state'] = 'nok';
+      } else if (!is_dir(realpath(dirname(__FILE__) . '/../../resources/ring-mqtt/node_modules'))) {
 				$return['state'] = 'nok';
 			}
     }
     return $return;
   }
+
+	public static function dependancy_end() {
+		config::save('ringmqttVersion', config::byKey('ringmqttRequire', __CLASS__), __CLASS__);
+	}
 
   /* Deamon */
   public static function deamon_start() {
@@ -573,6 +578,11 @@ class mqttRing extends eqLogic
 				$return['launchable'] = 'nok';
 				$return['launchable_message'] = __('Le démon MQTT Manager n\'est pas démarré', __FILE__);
 			}
+		}
+		// Dépendances
+		if (self::dependancy_info()['state'] == 'nok') {
+			$return['launchable'] = 'nok';
+			$return['launchable_message'] = __('Dépendances non installées.', __FILE__);
 		}
     return $return;
   }

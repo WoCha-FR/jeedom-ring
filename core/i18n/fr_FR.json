@@ -17,7 +17,8 @@
     "Sauvegarde snapshot impossible.": "Sauvegarde snapshot impossible.",
     "Snapshot invalide reçu.": "Snapshot invalide reçu.",
     "Type non géré ": "Type non géré ",
-    "Veuillez vérifier la configuration": "Veuillez vérifier la configuration"
+    "Veuillez vérifier la configuration": "Veuillez vérifier la configuration",
+    "Dépendances non installées.": "Dépendances non installées."
   },
   "plugins\/mqttRing\/desktop\/js\/mqttRing.js": {
     "Afficher": "Afficher",

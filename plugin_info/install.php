@@ -16,6 +16,9 @@
 */
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
+function mqttRing_install() {
+}
+
 function mqttRing_update() {
   // Mise a jour Délai Warning
   foreach (eqLogic::byType('mqttRing') as $eqLogic) {
@@ -25,4 +28,7 @@ function mqttRing_update() {
       $cmd->save();
     }
   }
+}
+
+function mqttRing_remove() {
 }
