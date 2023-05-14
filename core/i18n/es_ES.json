@@ -17,7 +17,8 @@
     "Sauvegarde snapshot impossible.": "No se puede realizar una copia de seguridad de la instantánea.",
     "Snapshot invalide reçu.": "Se ha recibido una instantánea no válida.",
     "Type non géré ": "Tipo no administrado ",
-    "Veuillez vérifier la configuration": "Por favor, compruebe la configuración"
+    "Veuillez vérifier la configuration": "Por favor, compruebe la configuración",
+    "Dépendances non installées.": "Dependencias no instaladas."
   },
   "plugins/mqttRing/desktop/js/mqttRing.js": {
     "Afficher": "Exponer",
@@ -79,6 +80,8 @@
     "Oui": "Sí",
     "Ouvrir": "Abrir",
     "Récupere les caméras, sonnette & chimes": "Recupera cámaras, timbres y campanillas",
-    "Topic racine": "Tema raíz"
+    "Topic racine": "Tema raíz",
+    "Version Librairie RING": "Versión de la librería RING",
+    "Veuillez relancer les dépendances pour mettre à jour la librairie. Relancez ensuite le démon pour voir la nouvelle version.": "Reinicie las dependencias para actualizar la biblioteca. A continuación, reinicie el demonio para ver la nueva versión."
   }
 }

@@ -10,6 +10,7 @@ Este plugin usa [ring-mqtt](https://github.com/tsightler/ring-mqtt) modificado p
 
 - Debes tener una cuenta de RING Alarm, con o sin suscripción.
 - Este plugin requiere [MQTT Manager](https://market.jeedom.com/index.php?v=d&p=market_display&id=4213), un plugin oficial y gratuito.
+- Para disponer de las capturas de la cámara, debe tener una suscripción RING activa.
 
 ## Instalación
 
