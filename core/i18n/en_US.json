@@ -17,7 +17,8 @@
     "Sauvegarde snapshot impossible.": "Unable to backup snapshot.",
     "Snapshot invalide reçu.": "Invalid snapshot received.",
     "Type non géré ": "Unmanaged type ",
-    "Veuillez vérifier la configuration": "Please check the configuration"
+    "Veuillez vérifier la configuration": "Please check the configuration",
+    "Dépendances non installées.": "Uninstalled outbuildings."
   },
   "plugins/mqttRing/desktop/js/mqttRing.js": {
     "Afficher": "Post",
@@ -79,6 +80,8 @@
     "Oui": "Yes",
     "Ouvrir": "Open",
     "Récupere les caméras, sonnette & chimes": "Recover cameras, doorbells & chimes",
-    "Topic racine": "Root topic"
+    "Topic racine": "Root topic",
+    "Version Librairie RING": "RING library version",
+    "Veuillez relancer les dépendances pour mettre à jour la librairie. Relancez ensuite le démon pour voir la nouvelle version.": "Please restart the dependencies to update the library. Then restart the daemon to see the new version."
   }
 }

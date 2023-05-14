@@ -17,7 +17,8 @@
     "Sauvegarde snapshot impossible.": "Sauvegarde snapshot impossible.",
     "Snapshot invalide reçu.": "Snapshot invalide reçu.",
     "Type non géré ": "Type non géré ",
-    "Veuillez vérifier la configuration": "Veuillez vérifier la configuration"
+    "Veuillez vérifier la configuration": "Veuillez vérifier la configuration",
+    "Dépendances non installées.": "Dépendances non installées."
   },
   "plugins\/mqttRing\/desktop\/js\/mqttRing.js": {
     "Afficher": "Afficher",
@@ -79,6 +80,8 @@
     "Oui": "Oui",
     "Ouvrir": "Ouvrir",
     "Récupere les caméras, sonnette & chimes": "Récupere les caméras, sonnette & chimes",
-    "Topic racine": "Topic racine"
+    "Topic racine": "Topic racine",
+    "Version Librairie RING": "Version Librairie RING",
+    "Veuillez relancer les dépendances pour mettre à jour la librairie. Relancez ensuite le démon pour voir la nouvelle version.": "Veuillez relancer les dépendances pour mettre à jour la librairie. Relancez ensuite le démon pour voir la nouvelle version."
   }
 }

@@ -4,6 +4,12 @@
 >
 >Si no hay información sobre la actualización, significa que sólo se trata de actualizaciones de documentación, traducción o texto.
 
+# 14/05/2023
+
+- Actualizar la biblioteca de anillos a la versión 5.2.2.
+- Versión de la biblioteca mostrada en la configuración.
+- Mensaje de alarma tras 1 minuto de indisponibilidad en lugar de inmediatamente.
+
 # 22/12/2022
 
 - Primera versión estable

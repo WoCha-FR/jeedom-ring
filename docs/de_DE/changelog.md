@@ -4,6 +4,12 @@
 >
 >Wenn es keine Informationen über die Aktualisierung gibt, handelt es sich nur um eine Aktualisierung der Dokumentation, der Übersetzung oder des Textes.
 
+# 14/05/2023
+
+- Aktualisierung der Ringbibliothek auf Version 5.2.2.
+- Anzeige der Library-Version in der Konfiguration.
+- Alarmmeldung nach 1 Minute Ausfallzeit statt sofort.
+
 # 22/12/2022
 
 - Erste stabile Version

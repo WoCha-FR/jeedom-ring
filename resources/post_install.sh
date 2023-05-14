@@ -7,24 +7,28 @@ PROGRESS_FILE=/tmp/jeedom_install_in_progress_mqttRing
 echo 20 > ${PROGRESS_FILE}
 
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-RING_BRANCH="v5.0.5_Jeedom"
-RSS_VERSION="0.20.4"
+GORTC_VER="1.5.0"
 FIND_ARCH=`sudo dpkg --print-architecture`
 
 case ${FIND_ARCH} in
   amd64)
-    RSS_ARCH="amd64";;
+    GORTC_ARCH="amd64";;
   arm64)
-    RSS_ARCH="arm64v8";;
+    GORTC_ARCH="arm64";;
   *)
-    RSS_ARCH="armv7";;
+    GORTC_ARCH="arm";;
 esac
 
-curl -L -s "https://github.com/aler9/rtsp-simple-server/releases/download/v${RSS_VERSION}/rtsp-simple-server_v${RSS_VERSION}_linux_${RSS_ARCH}.tar.gz" | tar zxf - -C /usr/local/bin rtsp-simple-server
-chown www-data:www-data -R /usr/local/bin/rtsp-simple-server
+curl "https://github.com/AlexxIT/go2rtc/releases/download/v${GORTC_VER}/go2rtc_linux_${GORTC_ARCH}" > /usr/local/bin/go2rtc
+chown www-data:www-data -R /usr/local/bin/go2rtc
+chmod +x /usr/local/bin/go2rtc
+
+cd $BASEDIR
+source ../core/config/mqttRing.config.ini &> /dev/null
+echo "Wanted Version: ${ringmqttRequire}"
 
 echo 50 > ${PROGRESS_FILE}
-git clone -b ${RING_BRANCH} --depth 1 https://github.com/WoCha-FR/ring-mqtt.git ${BASEDIR}/ring-mqtt
+git clone -b v${ringmqttRequire}_Jeedom --depth 1 https://github.com/WoCha-FR/ring-mqtt.git ${BASEDIR}/ring-mqtt
 
 echo 55 > ${PROGRESS_FILE}
 cd $BASEDIR/ring-mqtt
