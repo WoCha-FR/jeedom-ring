@@ -521,6 +521,8 @@ class mqttRing extends eqLogic
         $return['state'] = 'nok';
       } else if (!file_exists('/usr/local/bin/go2rtc')) {
         $return['state'] = 'nok';
+			} else if (filesize('/usr/local/bin/go2rtc') == 0) {
+				$return['state'] = 'nok';
 			} else if (!file_exists(__DIR__ . '/../../resources/ring-mqtt/ring-mqtt.js')) {
 				$return['state'] = 'nok';
       } else if (!is_dir(realpath(dirname(__FILE__) . '/../../resources/ring-mqtt/node_modules'))) {

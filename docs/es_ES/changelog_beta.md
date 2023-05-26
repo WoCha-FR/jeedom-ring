@@ -6,6 +6,7 @@
 
 # 26/05/2023
 - Añadir noticias y acciones de RING INTERCOM.
+- Restauración del flujo RTSP
 
 # 13/05/2023
 

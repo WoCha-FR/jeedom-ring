@@ -19,7 +19,7 @@ case ${FIND_ARCH} in
     GORTC_ARCH="arm";;
 esac
 
-curl "https://github.com/AlexxIT/go2rtc/releases/download/v${GORTC_VER}/go2rtc_linux_${GORTC_ARCH}" > /usr/local/bin/go2rtc
+curl -L -s -o /usr/local/bin/go2rtc "https://github.com/AlexxIT/go2rtc/releases/download/v${GORTC_VER}/go2rtc_linux_${GORTC_ARCH}"
 chown www-data:www-data -R /usr/local/bin/go2rtc
 chmod +x /usr/local/bin/go2rtc
 
@@ -40,6 +40,7 @@ if [ -f "${BASEDIR}/ring-state.json" ]; then
   mv ${BASEDIR}/ring-state.json ${BASEDIR}/ring-mqtt/ring-state.json
 fi
 chown www-data:www-data -R ${BASEDIR}/ring-mqtt
+chmod +x ${BASEDIR}/ring-mqtt/scripts/start-stream.sh
 
 echo "Everything is successfully installed!"
 echo "Post install finished"
