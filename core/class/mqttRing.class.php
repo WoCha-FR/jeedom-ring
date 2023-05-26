@@ -271,8 +271,6 @@ class mqttRing extends eqLogic
 								$cmd->setType('info');
 								$cmd->setSubType('binary');
 								$cmd->setIsVisible(1);
-								$cmd->setTemplate('dashboard', 'core::alert');
-								$cmd->setTemplate('mobile', 'core::alert');
 								$cmd->setGeneric_type('LOCK_STATE');
 								$cmd->setTemplate('dashboard', 'core::lock');
 								$cmd->setTemplate('mobile', 'core::lock');
@@ -283,6 +281,7 @@ class mqttRing extends eqLogic
 							if( array_key_exists('command_topic', $data) ) {
 								// Update commande INFO
 								$cmd->setName($type.'_etat');
+								$cmd->setIsVisible(0);
 								$cmd->save();
 								// Racine Commande Action
 								$cmdaLogicId = substr($data["command_topic"], $_subtopicStart);
@@ -294,6 +293,7 @@ class mqttRing extends eqLogic
 									$cmda->setName($type.'_on');
 									$cmda->setType('action');
 									$cmda->setSubType('other');
+									$cmda->setIsVisible(1);
 									$cmda->setValue($cmd->getId());
 									$cmda->setConfiguration('value', 'intercom');
 									$cmda->setGeneric_type('LOCK_CLOSE');
@@ -311,9 +311,10 @@ class mqttRing extends eqLogic
 									$cmda->setName($type.'_off');
 									$cmda->setType('action');
 									$cmda->setSubType('other');
+									$cmda->setIsVisible(1);
 									$cmda->setValue($cmd->getId());
 									$cmda->setConfiguration('value', 'intercom');
-									$cmda->setGeneric_type('LOCK_CLOSE');
+									$cmda->setGeneric_type('LOCK_OPEN');
 									$cmda->setTemplate('dashboard', 'core::lock');
 									$cmda->setTemplate('mobile', 'core::lock');
 									$cmda->setConfiguration('actionConfirm', '1');
@@ -321,8 +322,8 @@ class mqttRing extends eqLogic
 									log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $type.'_off');
 								}
 							}
-							break;
 						}
+						break;
 					// Parcours des Numériques
 					case "number":
 						foreach( $_sensors as $type => $data ) {
