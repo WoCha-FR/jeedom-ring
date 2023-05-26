@@ -4,6 +4,9 @@
 >
 >If there is no information about the update, it means that it is only for documentation, translation or text updates.
 
+# 26/05/2023
+- Adding RING INTERCOM state and actions.
+
 # 13/05/2023
 
 - Update ring library to version 5.2.2.

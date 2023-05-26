@@ -82,7 +82,7 @@ class mqttRing extends eqLogic
 						continue;
 					}
 					// Traitement de la valeur
-					$val_ok = array('online', 'on', 'ok');
+					$val_ok = array('online', 'on', 'ok', 'locked');
 					if( $cmd->getSubType() == 'binary' ) {
 						if( in_array(strtolower($_value), $val_ok )) {
 							$_value = 1;
@@ -257,6 +257,72 @@ class mqttRing extends eqLogic
 							}
 						}
 						break;
+					// Parcours des Intercoms
+					case "lock":
+						foreach( $_sensors as $type => $data ) {
+							$cmdLogicId = substr($data["state_topic"], $_subtopicStart);
+							$cmd = $eqLogic->getCmd('info', $cmdLogicId);
+							// Création si besoin
+							if (!is_object($cmd)) {
+								$cmd = new mqttRingCmd();
+								$cmd->setLogicalId($cmdLogicId);
+								$cmd->setEqLogic_id($eqLogic->getId());
+								$cmd->setName($type);
+								$cmd->setType('info');
+								$cmd->setSubType('binary');
+								$cmd->setIsVisible(1);
+								$cmd->setTemplate('dashboard', 'core::alert');
+								$cmd->setTemplate('mobile', 'core::alert');
+								$cmd->setGeneric_type('LOCK_STATE');
+								$cmd->setTemplate('dashboard', 'core::lock');
+								$cmd->setTemplate('mobile', 'core::lock');
+								$cmd->save();
+								log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Info ', __FILE__) . $uniqID . ':' . $type);
+							}
+							// Commande Action ?
+							if( array_key_exists('command_topic', $data) ) {
+								// Update commande INFO
+								$cmd->setName($type.'_etat');
+								$cmd->save();
+								// Racine Commande Action
+								$cmdaLogicId = substr($data["command_topic"], $_subtopicStart);
+								// Action Fermeture
+								$cmda = $eqLogic->getCmd('action', $cmdaLogicId . '_on');
+								if (!is_object($cmda)) {
+									$cmda->setLogicalId($cmdaLogicId);
+									$cmda->setEqLogic_id($eqLogic->getId());
+									$cmda->setName($type.'_on');
+									$cmda->setType('action');
+									$cmda->setSubType('other');
+									$cmda->setValue($cmd->getId());
+									$cmda->setConfiguration('value', 'intercom');
+									$cmda->setGeneric_type('LOCK_CLOSE');
+									$cmda->setTemplate('dashboard', 'core::lock');
+									$cmda->setTemplate('mobile', 'core::lock');
+									$cmda->setConfiguration('actionConfirm', '1');
+									$cmda->save();
+									log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $type.'_on');
+								}
+								// Action Ouverture
+								$cmda = $eqLogic->getCmd('action', $cmdaLogicId . '_off');
+								if (!is_object($cmda)) {
+									$cmda->setLogicalId($cmdaLogicId);
+									$cmda->setEqLogic_id($eqLogic->getId());
+									$cmda->setName($type.'_off');
+									$cmda->setType('action');
+									$cmda->setSubType('other');
+									$cmda->setValue($cmd->getId());
+									$cmda->setConfiguration('value', 'intercom');
+									$cmda->setGeneric_type('LOCK_CLOSE');
+									$cmda->setTemplate('dashboard', 'core::lock');
+									$cmda->setTemplate('mobile', 'core::lock');
+									$cmda->setConfiguration('actionConfirm', '1');
+									$cmda->save();
+									log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $type.'_off');
+								}
+							}
+							break;
+						}
 					// Parcours des Numériques
 					case "number":
 						foreach( $_sensors as $type => $data ) {
@@ -621,6 +687,14 @@ class mqttRingCmd extends cmd
 						$value = 'ON';
 					} else {
 						$value = 'OFF';
+					}
+				// Intercom
+				} else if( $this->getConfiguration('value') == 'intercom' ) {
+					$valCmd = cmd::byId($this->getValue());
+					if ($valCmd->execCmd() == '0') {
+						$value = 'LOCK';
+					} else {
+						$value = 'UNLOCK';
 					}
 				// Commande Utilisateur
 				} else {

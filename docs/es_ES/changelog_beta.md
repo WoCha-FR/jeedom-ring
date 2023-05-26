@@ -4,6 +4,9 @@
 >
 >Si no hay información sobre la actualización, significa que sólo se trata de actualizaciones de documentación, traducción o texto.
 
+# 26/05/2023
+- Añadir noticias y acciones de RING INTERCOM.
+
 # 13/05/2023
 
 - Actualizar la biblioteca de anillos a la versión 5.2.2.
