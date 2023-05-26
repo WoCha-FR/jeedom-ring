@@ -554,7 +554,12 @@ class mqttRing extends eqLogic
 
     $appjs_path = realpath(dirname(__FILE__) . '/../../resources/ring-mqtt');
     chdir($appjs_path);
-    $cmd = '/usr/bin/node ' . $appjs_path . '/ring-mqtt.js';
+
+		$appjs_debug = '';
+    if (log::getLogLevel(__CLASS__) == 'DEBUG') {
+      $appjs_debug = 'DEBUG=ring-mqtt,ring-rtsp ';
+    }
+    $cmd = '/usr/bin/node ' . $appjs_debug . $appjs_path . '/ring-mqtt.js';
 
     $config = [
       'mqtt_url' => $mqtt_url,
@@ -583,7 +588,7 @@ class mqttRing extends eqLogic
     file_put_contents('config.json', json_encode($config));
 
     log::add(__CLASS__, 'info', __('Démarrage du démon mqttRing', __FILE__) . ' : ' . $cmd);
-    exec(system::getCmdSudo() . ' DEBUG=ring-mqtt ' . $cmd . ' >> ' . log::getPathToLog('mqttRingd') . ' 2>&1 &');
+    exec(system::getCmdSudo() . $cmd . ' >> ' . log::getPathToLog('mqttRingd') . ' 2>&1 &');
     $i = 0;
 		while ($i < 30) {
 			$deamon_info = self::deamon_info();
