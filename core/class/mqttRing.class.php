@@ -286,9 +286,10 @@ class mqttRing extends eqLogic
 								// Racine Commande Action
 								$cmdaLogicId = substr($data["command_topic"], $_subtopicStart);
 								// Action Fermeture
-								$cmda = $eqLogic->getCmd('action', $cmdaLogicId . '_on');
-								if (!is_object($cmda)) {
-									$cmda->setLogicalId($cmdaLogicId);
+								$cmdaLogicId_on = $eqLogic->getCmd('action', $cmdaLogicId . '/on');
+								if (!is_object($cmdaLogicId_on)) {
+									$cmda = new mqttRingCmd();
+									$cmda->setLogicalId($cmdaLogicId . '/on');
 									$cmda->setEqLogic_id($eqLogic->getId());
 									$cmda->setName($type.'_on');
 									$cmda->setType('action');
@@ -304,9 +305,10 @@ class mqttRing extends eqLogic
 									log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $type.'_on');
 								}
 								// Action Ouverture
-								$cmda = $eqLogic->getCmd('action', $cmdaLogicId . '_off');
-								if (!is_object($cmda)) {
-									$cmda->setLogicalId($cmdaLogicId);
+								$cmdaLogicId_off = $eqLogic->getCmd('action', $cmdaLogicId . '/off');
+								if (!is_object($cmdaLogicId_off)) {
+									$cmda = new mqttRingCmd();
+									$cmda->setLogicalId($cmdaLogicId . '/off');
 									$cmda->setEqLogic_id($eqLogic->getId());
 									$cmda->setName($type.'_off');
 									$cmda->setType('action');
@@ -556,10 +558,10 @@ class mqttRing extends eqLogic
     chdir($appjs_path);
 
 		$appjs_debug = '';
-    if (log::getLogLevel(__CLASS__) == 'DEBUG') {
+    if (log::convertLogLevel(log::getLogLevel(__CLASS__)) == 'debug') {
       $appjs_debug = 'DEBUG=ring-mqtt,ring-rtsp ';
     }
-    $cmd = '/usr/bin/node ' . $appjs_debug . $appjs_path . '/ring-mqtt.js';
+    $cmd = $appjs_debug . '/usr/bin/node ' . $appjs_path . '/ring-mqtt.js';
 
     $config = [
       'mqtt_url' => $mqtt_url,
@@ -698,10 +700,11 @@ class mqttRingCmd extends cmd
 					}
 				// Intercom
 				} else if( $this->getConfiguration('value') == 'intercom' ) {
-					$valCmd = cmd::byId($this->getValue());
-					if ($valCmd->execCmd() == '0') {
+					if ($subTopic == 'lock/command/on') {
+						$subTopic = 'lock/command';
 						$value = 'LOCK';
 					} else {
+						$subTopic = 'lock/command';
 						$value = 'UNLOCK';
 					}
 				// Commande Utilisateur
