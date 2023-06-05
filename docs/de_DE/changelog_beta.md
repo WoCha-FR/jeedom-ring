@@ -4,6 +4,9 @@
 >
 >Wenn es keine Informationen über die Aktualisierung gibt, handelt es sich nur um eine Aktualisierung der Dokumentation, der Übersetzung oder des Textes.
 
+# 05/06/2023
+- Aktualisierung der Ringbibliothek auf Version 5.3.0
+
 # 26/05/2023
 - Hinzufügen von Infos & Aktionen von RING INTERCOM.
 - Wiederherstellung des RTSP-Streams

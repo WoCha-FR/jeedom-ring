@@ -4,6 +4,9 @@
 >
 >S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte.
 
+# 05/06/2023
+- Mise à jour librairie ring à la version 5.3.0
+
 # 26/05/2023
 - Ajout des infos & actions de RING INTERCOM.
 - Restauration du flux RTSP
