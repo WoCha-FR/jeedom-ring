@@ -12,11 +12,9 @@
 - Restoring the RTSP stream
 
 # 13/05/2023
-
 - Update ring library to version 5.2.2.
 - Library version displayed in the configuration.
 - Alarm message after 1 minute of unavailability instead of immediately.
 
 # 14/12/2022
-
 - First public beta

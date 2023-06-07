@@ -530,7 +530,9 @@ class mqttRing extends eqLogic
 				$return['state'] = 'nok';
       } else if (!is_dir(realpath(dirname(__FILE__) . '/../../resources/ring-mqtt/node_modules'))) {
 				$return['state'] = 'nok';
-			}
+			} else if (config::byKey('ringmqttRequire', __CLASS__) != config::byKey('ringmqttVersion', __CLASS__)) {
+        $return['state'] = 'nok';
+      }
     }
     return $return;
   }

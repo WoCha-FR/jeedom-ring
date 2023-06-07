@@ -12,11 +12,9 @@
 - Restauration du flux RTSP
 
 # 13/05/2023
-
 - Mise à jour librairie ring à la version 5.2.2.
 - Affichage version librairie dans la configuration.
 - Message d'alarme après 1 minute d'indisponibilité au lieu d'immédiatement.
 
 # 14/12/2022
-
 - Première beta publique

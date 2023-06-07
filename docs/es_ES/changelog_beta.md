@@ -12,11 +12,9 @@
 - Restauración del flujo RTSP
 
 # 13/05/2023
-
 - Actualizar la biblioteca de anillos a la versión 5.2.2.
 - Versión de la biblioteca mostrada en la configuración.
 - Mensaje de alarma tras 1 minuto de indisponibilidad en lugar de inmediatamente.
 
 # 14/12/2022
-
 - Primera beta pública
