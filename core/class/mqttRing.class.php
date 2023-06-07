@@ -82,7 +82,7 @@ class mqttRing extends eqLogic
 						continue;
 					}
 					// Traitement de la valeur
-					$val_ok = array('online', 'on', 'ok');
+					$val_ok = array('online', 'on', 'ok', 'locked');
 					if( $cmd->getSubType() == 'binary' ) {
 						if( in_array(strtolower($_value), $val_ok )) {
 							$_value = 1;
@@ -254,6 +254,75 @@ class mqttRing extends eqLogic
 								}
 								$cmd->save();
 								log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Info ', __FILE__) . $uniqID . ':' . $type);
+							}
+						}
+						break;
+					// Parcours des Intercoms
+					case "lock":
+						foreach( $_sensors as $type => $data ) {
+							$cmdLogicId = substr($data["state_topic"], $_subtopicStart);
+							$cmd = $eqLogic->getCmd('info', $cmdLogicId);
+							// Création si besoin
+							if (!is_object($cmd)) {
+								$cmd = new mqttRingCmd();
+								$cmd->setLogicalId($cmdLogicId);
+								$cmd->setEqLogic_id($eqLogic->getId());
+								$cmd->setName($type);
+								$cmd->setType('info');
+								$cmd->setSubType('binary');
+								$cmd->setIsVisible(1);
+								$cmd->setGeneric_type('LOCK_STATE');
+								$cmd->setTemplate('dashboard', 'core::lock');
+								$cmd->setTemplate('mobile', 'core::lock');
+								$cmd->save();
+								log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Info ', __FILE__) . $uniqID . ':' . $type);
+							}
+							// Commande Action ?
+							if( array_key_exists('command_topic', $data) ) {
+								// Update commande INFO
+								$cmd->setName($type.'_etat');
+								$cmd->setIsVisible(0);
+								$cmd->save();
+								// Racine Commande Action
+								$cmdaLogicId = substr($data["command_topic"], $_subtopicStart);
+								// Action Fermeture
+								$cmdaLogicId_on = $eqLogic->getCmd('action', $cmdaLogicId . '/on');
+								if (!is_object($cmdaLogicId_on)) {
+									$cmda = new mqttRingCmd();
+									$cmda->setLogicalId($cmdaLogicId . '/on');
+									$cmda->setEqLogic_id($eqLogic->getId());
+									$cmda->setName($type.'_on');
+									$cmda->setType('action');
+									$cmda->setSubType('other');
+									$cmda->setIsVisible(1);
+									$cmda->setValue($cmd->getId());
+									$cmda->setConfiguration('value', 'intercom');
+									$cmda->setGeneric_type('LOCK_CLOSE');
+									$cmda->setTemplate('dashboard', 'core::lock');
+									$cmda->setTemplate('mobile', 'core::lock');
+									$cmda->setConfiguration('actionConfirm', '1');
+									$cmda->save();
+									log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $type.'_on');
+								}
+								// Action Ouverture
+								$cmdaLogicId_off = $eqLogic->getCmd('action', $cmdaLogicId . '/off');
+								if (!is_object($cmdaLogicId_off)) {
+									$cmda = new mqttRingCmd();
+									$cmda->setLogicalId($cmdaLogicId . '/off');
+									$cmda->setEqLogic_id($eqLogic->getId());
+									$cmda->setName($type.'_off');
+									$cmda->setType('action');
+									$cmda->setSubType('other');
+									$cmda->setIsVisible(1);
+									$cmda->setValue($cmd->getId());
+									$cmda->setConfiguration('value', 'intercom');
+									$cmda->setGeneric_type('LOCK_OPEN');
+									$cmda->setTemplate('dashboard', 'core::lock');
+									$cmda->setTemplate('mobile', 'core::lock');
+									$cmda->setConfiguration('actionConfirm', '1');
+									$cmda->save();
+									log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $type.'_off');
+								}
 							}
 						}
 						break;
@@ -455,11 +524,15 @@ class mqttRing extends eqLogic
         $return['state'] = 'nok';
       } else if (!file_exists('/usr/local/bin/go2rtc')) {
         $return['state'] = 'nok';
+			} else if (filesize('/usr/local/bin/go2rtc') == 0) {
+				$return['state'] = 'nok';
 			} else if (!file_exists(__DIR__ . '/../../resources/ring-mqtt/ring-mqtt.js')) {
 				$return['state'] = 'nok';
       } else if (!is_dir(realpath(dirname(__FILE__) . '/../../resources/ring-mqtt/node_modules'))) {
 				$return['state'] = 'nok';
-			}
+			} else if (config::byKey('ringmqttRequire', __CLASS__) != config::byKey('ringmqttVersion', __CLASS__)) {
+        $return['state'] = 'nok';
+      }
     }
     return $return;
   }
@@ -485,7 +558,12 @@ class mqttRing extends eqLogic
 
     $appjs_path = realpath(dirname(__FILE__) . '/../../resources/ring-mqtt');
     chdir($appjs_path);
-    $cmd = '/usr/bin/node ' . $appjs_path . '/ring-mqtt.js';
+
+		$appjs_debug = '';
+    if (log::convertLogLevel(log::getLogLevel(__CLASS__)) == 'debug') {
+      $appjs_debug = 'DEBUG=ring-mqtt,ring-rtsp ';
+    }
+    $cmd = $appjs_debug . '/usr/bin/node ' . $appjs_path . '/ring-mqtt.js';
 
     $config = [
       'mqtt_url' => $mqtt_url,
@@ -514,7 +592,7 @@ class mqttRing extends eqLogic
     file_put_contents('config.json', json_encode($config));
 
     log::add(__CLASS__, 'info', __('Démarrage du démon mqttRing', __FILE__) . ' : ' . $cmd);
-    exec(system::getCmdSudo() . ' DEBUG=ring-mqtt ' . $cmd . ' >> ' . log::getPathToLog('mqttRingd') . ' 2>&1 &');
+    exec(system::getCmdSudo() . $cmd . ' >> ' . log::getPathToLog('mqttRingd') . ' 2>&1 &');
     $i = 0;
 		while ($i < 30) {
 			$deamon_info = self::deamon_info();
@@ -621,6 +699,15 @@ class mqttRingCmd extends cmd
 						$value = 'ON';
 					} else {
 						$value = 'OFF';
+					}
+				// Intercom
+				} else if( $this->getConfiguration('value') == 'intercom' ) {
+					if ($subTopic == 'lock/command/on') {
+						$subTopic = 'lock/command';
+						$value = 'LOCK';
+					} else {
+						$subTopic = 'lock/command';
+						$value = 'UNLOCK';
 					}
 				// Commande Utilisateur
 				} else {

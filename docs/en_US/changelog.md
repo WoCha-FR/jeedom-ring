@@ -4,16 +4,27 @@
 >
 >If there is no information about the update, it means that it is only for documentation, translation or text updates.
 
-# 14/05/2023
+# 07/06/2023
+- Update ring library to version 5.3.0
+- Adding RING INTERCOM state and actions
+- Restoring the RTSP stream
 
+>**IMPORTANT**
+>
+>If you are not receiving notifications after upgrading (Ding,...),
+>you must delete all previously authenticated ring-mqtt instances from the Ring Control Center.
+>
+>![RingControlCenter](../images/retrait_appareils.png)
+>
+>You will then need to reconnect the plugin as you did when you installed it.
+
+# 14/05/2023
 - Update ring library to version 5.2.2.
 - Library version displayed in the configuration.
 - Alarm message after 1 minute of unavailability instead of immediately.
 
 # 22/12/2022
-
 - First stable release
 
 # 14/12/2022
-
 - First public beta
