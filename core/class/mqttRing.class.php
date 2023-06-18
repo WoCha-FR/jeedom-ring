@@ -90,9 +90,9 @@ class mqttRing extends eqLogic
               $eqLogic->checkAndUpdateCmd('alarmactive', 1);
             }
             if ($_value == 'triggered') {
-              $eqLogic->checkAndUpdateCmd('enalarme', 1);
-            } else {
               $eqLogic->checkAndUpdateCmd('enalarme', 0);
+            } else {
+              $eqLogic->checkAndUpdateCmd('enalarme', 1);
             }
           }
           // Traitement de la valeur
