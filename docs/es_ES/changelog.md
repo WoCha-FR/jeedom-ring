@@ -4,6 +4,10 @@
 >
 >Si no hay información sobre la actualización, significa que sólo se trata de actualizaciones de documentación, traducción o texto.
 
+# 18/06/2023
+- Adición de información binaria: Alarma activada. Tipo genérico ALARM_ENABLE_STATE
+- Información binaria añadida: Alarma activada. Tipo genérico ALARM_STATE
+
 # 07/06/2023
 - Mise à jour librairie ring à la version 5.3.0
 - Ajout des infos & actions de RING INTERCOM.

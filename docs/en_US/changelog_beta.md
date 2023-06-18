@@ -5,7 +5,8 @@
 >If there is no information about the update, it means that it is only for documentation, translation or text updates.
 
 # 18/06/2023
-- Addition of binary information: Alarm activated.
+- Addition of binary information: Alarm activated. Generic type ALARM_ENABLE_STATE
+- Binary information added: Alarm triggered. Generic type ALARM_STATE
 
 # 05/06/2023
 - Update ring library to version 5.3.0

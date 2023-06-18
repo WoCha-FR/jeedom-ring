@@ -82,11 +82,17 @@ class mqttRing extends eqLogic
             continue;
           }
           // Binaire "virtuel" Alarme activée
+          // Binaire "virtuel" En Alarme
           if ($_cmdLogicalId == 'alarm/state') {
             if ($_value == 'disarmed') {
               $eqLogic->checkAndUpdateCmd('alarmactive', 0);
             } else {
               $eqLogic->checkAndUpdateCmd('alarmactive', 1);
+            }
+            if ($_value == 'triggered') {
+              $eqLogic->checkAndUpdateCmd('enalarme', 1);
+            } else {
+              $eqLogic->checkAndUpdateCmd('enalarme', 0);
             }
           }
           // Traitement de la valeur
@@ -497,6 +503,23 @@ class mqttRing extends eqLogic
               $cmd->setTemplate('mobile', 'core::lock');
               $cmd->save();
               log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Info ', __FILE__) . ' alarmactive : Alarme');
+            }
+            // Commande info virtuelle : En Alarme
+            $cmd = $eqLogic->getCmd('info', 'enalarme');
+            // Création si besoin
+            if (!is_object($cmd)) {
+              $cmd = new mqttRingCmd();
+              $cmd->setLogicalId('enalarme');
+              $cmd->setEqLogic_id($eqLogic->getId());
+              $cmd->setName('En Alarme');
+              $cmd->setType('info');
+              $cmd->setSubType('binary');
+              $cmd->setIsVisible(1);
+              $cmd->setGeneric_type('ALARM_STATE');
+              $cmd->setTemplate('dashboard', 'core::alert');
+              $cmd->setTemplate('mobile', 'core::alert');
+              $cmd->save();
+              log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Info ', __FILE__) . ' enalarme : Alarme');
             }
             // Commandes actions
             $_modes = array('arm_away','arm_home','disarm');
