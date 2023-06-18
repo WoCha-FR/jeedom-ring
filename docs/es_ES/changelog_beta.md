@@ -4,6 +4,9 @@
 >
 >Si no hay información sobre la actualización, significa que sólo se trata de actualizaciones de documentación, traducción o texto.
 
+# 18/06/2023
+- Adición de información binaria: Alarma activada.
+
 # 06/05/2023
 - Actualizar la biblioteca de anillos a la versión 5.3.0
 

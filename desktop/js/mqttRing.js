@@ -88,5 +88,5 @@ function addCmdToTable(_cmd) {
       tr.setValues(_cmd, '.cmdAttr')
       jeedom.cmd.changeType(tr, init(_cmd.subType))
     }
-  })  
+  })
 }
