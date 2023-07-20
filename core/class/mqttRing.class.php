@@ -121,7 +121,7 @@ class mqttRing extends eqLogic
       $_eqLogicId = substr($sensors["sensor"]["info"]["availability_topic"], $_start, -7);
       // On recherche
       $eqLogic = self::byLogicalId($_eqLogicId, __CLASS__);
-      // Création si besoin
+      // Création Equipement si besoin
       if (!is_object($eqLogic)) {
         $eqLogic = new mqttRing();
         $eqLogic->setEqType_name(__CLASS__);
@@ -523,6 +523,8 @@ class mqttRing extends eqLogic
             }
             // Commandes actions
             $_modes = array('arm_away','arm_home','disarm');
+            // ID de la commande info 'alarme/state'
+            $cmdvalue = $eqLogic->getCmd('info', 'alarme/state');
             foreach( $_modes as $mode ) {
               $cmdaLogicId = substr($data["command_topic"], $_subtopicStart) . '%' . $mode;
               $cmda = $eqLogic->getCmd('action', $cmdaLogicId);
@@ -534,6 +536,7 @@ class mqttRing extends eqLogic
                 $cmda->setName($mode);
                 $cmda->setType('action');
                 $cmda->setSubType('other');
+                $cmda->setValue($cmdvalue);
                 $cmda->setGeneric_type('ALARM_SET_MODE');
                 $cmda->setTemplate('dashboard', 'default');
                 $cmda->setTemplate('mobile', 'default');
@@ -543,7 +546,7 @@ class mqttRing extends eqLogic
                 } else if( $mode == 'arm_home' ) {
                   $cmda->setDisplay('icon', '<i class="icon jeedomapp-in icon_orange"></i>');
                 } else {
-                  $cmda->setDisplay('icon', '<i class="icon jeedom-off icon_green"></i>');
+                  $cmda->setDisplay('icon', '<i class="icon jeedomapp-alarme icon_green"></i>');
                 }
                 $cmda->save();
                 log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $mode);
