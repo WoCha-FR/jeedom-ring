@@ -7,7 +7,7 @@ PROGRESS_FILE=/tmp/jeedom_install_in_progress_mqttRing
 echo 20 > ${PROGRESS_FILE}
 
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-GORTC_VER="1.5.0"
+GORTC_VER="1.6.0"
 FIND_ARCH=`sudo dpkg --print-architecture`
 
 case ${FIND_ARCH} in
