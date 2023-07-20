@@ -468,7 +468,11 @@ class mqttRing extends eqLogic
             break;
           // Panneau de contôle alarme
           case "alarm_control_panel" :
-            $data = $_sensors["alarm"];
+            if (isset($_sensors["mode"])) {
+              $data = $_sensors["mode"]; // Panneau virtuel site Base Station
+            } else {
+              $data = $_sensors["alarm"]; // Panneau site avec Base Station
+            }
             $cmdLogicId = substr($data["state_topic"], $_subtopicStart);
             // Commande alarm/state
             $cmd = $eqLogic->getCmd('info', $cmdLogicId);
