@@ -1,5 +1,9 @@
 {
-  "plugins\/mqttRing\/core\/class\/mqttRing.class.php": {
+  "plugins/mqttRing/core/ajax/mqttRing.ajax.php": {
+    "401 - Accès non Autorisé": "401 - Accès non Autorisé",
+    "Aucune méthode correspondante à": "Aucune méthode correspondante à"
+  },
+  "plugins/mqttRing/core/class/mqttRing.class.php": {
     " inconnue dans l'equipement ": " inconnue dans l'equipement ",
     "Ajout commande Action ": "Ajout commande Action ",
     "Ajout commande Info ": "Ajout commande Info ",
@@ -20,7 +24,7 @@
     "Veuillez vérifier la configuration": "Veuillez vérifier la configuration",
     "Dépendances non installées.": "Dépendances non installées."
   },
-  "plugins\/mqttRing\/desktop\/js\/mqttRing.js": {
+  "plugins/mqttRing/desktop/js/mqttRing.js": {
     "Afficher": "Afficher",
     "Choisir une icône": "Choisir une icône",
     "Historiser": "Historiser",
@@ -31,9 +35,11 @@
     "Nom de la commande": "Nom de la commande",
     "Tester": "Tester",
     "Topic": "Topic",
-    "Unité": "Unité"
+    "Unité": "Unité",
+    "Synchronisation en cours": "Synchronisation en cours",
+    "Operation realisee avec succes": "Operation realisee avec succes"
   },
-  "plugins\/mqttRing\/desktop\/php\/mqttRing.php": {
+  "plugins/mqttRing/desktop/php/mqttRing.php": {
     "401 - Accès non Autorisé": "401 - Accès non Autorisé",
     "Actions": "Actions",
     "Activer": "Activer",
@@ -66,9 +72,10 @@
     "Supprimer": "Supprimer",
     "Topic racine": "Topic racine",
     "Type": "Type",
-    "Visible": "Visible"
+    "Visible": "Visible",
+    "Synchronisation": "Synchronisation"
   },
-  "plugins\/mqttRing\/plugin_info\/configuration.php": {
+  "plugins/mqttRing/plugin_info/configuration.php": {
     "Activation des boutons Panique": "Activation des boutons Panique",
     "Activation des caméras": "Activation des caméras",
     "Activation des modes": "Activation des modes",

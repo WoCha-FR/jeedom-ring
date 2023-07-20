@@ -1,4 +1,8 @@
 {
+  "plugins/mqttRing/core/ajax/mqttRing.ajax.php": {
+    "401 - Accès non Autorisé": "401 - Unbefugter Zugriff",
+    "Aucune méthode correspondante à": "Keine entsprechende Methode zu"
+  },
   "plugins/mqttRing/core/class/mqttRing.class.php": {
     " inconnue dans l'equipement ": " unbekannt in der Ausrüstung ",
     "Ajout commande Action ": "Hinzufügen des Aktionsbefehls ",
@@ -31,7 +35,9 @@
     "Nom de la commande": "Bestellname",
     "Tester": "Test",
     "Topic": "Thema",
-    "Unité": "Einheit"
+    "Unité": "Einheit",
+    "Synchronisation en cours": "Synchronisation läuft",
+    "Operation realisee avec succes": "Erfolgreich durchgeführte Operation"
   },
   "plugins/mqttRing/desktop/php/mqttRing.php": {
     "401 - Accès non Autorisé": "401 - Unbefugter Zugriff",
@@ -66,7 +72,8 @@
     "Supprimer": "Löschen",
     "Topic racine": "Stammthema",
     "Type": "Art",
-    "Visible": "Sichtbar"
+    "Visible": "Sichtbar",
+    "Synchronisation": "Synchronisation"
   },
   "plugins/mqttRing/plugin_info/configuration.php": {
     "Activation des boutons Panique": "Aktivieren von Paniktasten",

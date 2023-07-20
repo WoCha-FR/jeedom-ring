@@ -1,4 +1,8 @@
 {
+  "plugins/mqttRing/core/ajax/mqttRing.ajax.php": {
+    "401 - Accès non Autorisé": "401 - Acceso no autorizado",
+    "Aucune méthode correspondante à": "No existe ningún método correspondiente a"
+  },
   "plugins/mqttRing/core/class/mqttRing.class.php": {
     " inconnue dans l'equipement ": " desconocido en el equipo ",
     "Ajout commande Action ": "Agregar comando Acción ",
@@ -31,7 +35,9 @@
     "Nom de la commande": "Nombre del pedido",
     "Tester": "Prueba",
     "Topic": "Tema",
-    "Unité": "Unidad"
+    "Unité": "Unidad",
+    "Synchronisation en cours": "Sincronización en curso",
+    "Operation realisee avec succes": "Operación concluida con éxito"
   },
   "plugins/mqttRing/desktop/php/mqttRing.php": {
     "401 - Accès non Autorisé": "401 - Acceso no autorizado",
@@ -66,7 +72,8 @@
     "Supprimer": "Borrar",
     "Topic racine": "Tema raíz",
     "Type": "Tipo",
-    "Visible": "Visible"
+    "Visible": "Visible",
+    "Synchronisation": "Sincronización"
   },
   "plugins/mqttRing/plugin_info/configuration.php": {
     "Activation des boutons Panique": "Activación de botones de pánico",
