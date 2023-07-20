@@ -40,7 +40,8 @@ if (!isConnect()) {
       $wantedVersion = config::byKey('ringmqttRequire', 'mqttRing', '');
       if ($localVersion != $wantedVersion) {
         echo '<span class="label label-warning">' . $localVersion . '</span><br>';
-        echo "<div class='alert alert-danger text-center'>{{Veuillez relancer les dépendances pour mettre à jour la librairie. Relancez ensuite le démon pour voir la nouvelle version.}}</div>";
+        echo "<div class='alert alert-danger text-center'>{{Le plugin nécessite la version}} <code>" . $wantedVersion . '</code><br />';
+        echo "{{Veuillez relancer les dépendances pour mettre à jour la librairie. Relancez ensuite le démon pour voir la nouvelle version.}}</div>";
       } else {
         echo '<span class="label label-success">' . $localVersion . '</span><br>';
       }

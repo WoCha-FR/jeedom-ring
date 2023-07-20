@@ -82,6 +82,7 @@
     "Récupere les caméras, sonnette & chimes": "Recupera cámaras, timbres y campanillas",
     "Topic racine": "Tema raíz",
     "Version Librairie RING": "Versión de la librería RING",
+    "Le plugin nécessite la version": "El plugin requiere la versión",
     "Veuillez relancer les dépendances pour mettre à jour la librairie. Relancez ensuite le démon pour voir la nouvelle version.": "Reinicie las dependencias para actualizar la biblioteca. A continuación, reinicie el demonio para ver la nueva versión."
   }
 }
