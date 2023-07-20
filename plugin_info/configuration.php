@@ -89,7 +89,7 @@ if (!isConnect()) {
     <div class="form-group">
       <label class="col-md-4 control-label">{{Identification RING}}</label>
       <div class="col-md-3">
-        <a class="btn btn-default" id="bt_ringAuthPage2"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{Ouvrir}}</a>
+        <a class="btn btn-default" id="bt_ringAuthPage"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{Ouvrir}}</a>
       </div>
     </div>
   </fieldset>
@@ -97,12 +97,6 @@ if (!isConnect()) {
 
 <script>
   $('#bt_ringAuthPage').off('clic').on('click', function() {
-    $('#md_modal').dialog({
-      title: "{{Authentification Ring}}"
-    }).load('index.php?v=d&plugin=mqttRing&modal=ring_auth').dialog('open');
-  })
-
-  $('#bt_ringAuthPage2').off('clic').on('click', function() {
     PopUpCentre("http://<?php print config::byKey('internalAddr') ?>:55123", 480, 700);
   })
 
