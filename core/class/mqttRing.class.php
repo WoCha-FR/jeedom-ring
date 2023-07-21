@@ -116,9 +116,14 @@ class mqttRing extends eqLogic
     // Parcours des configurations
     foreach( $_values as $uniqID => $sensors ) {
       log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Configuration pour ', __FILE__) . $uniqID);
-      // On determine l'eqLogicId
+      // alarm_control_panel virtuel
+      if (substr($uniqID, -5) == '_mode') {
+        $data = $sensors["alarm_control_panel"]["mode"];
+      } else {
+        $data = $sensors["sensor"]["info"];
+      }
       $_start = (strlen(config::byKey('mqtt::topic', __CLASS__, 'ring')) + 1);
-      $_eqLogicId = substr($sensors["sensor"]["info"]["availability_topic"], $_start, -7);
+      $_eqLogicId = substr($data["availability_topic"], $_start, -7);
       // On recherche
       $eqLogic = self::byLogicalId($_eqLogicId, __CLASS__);
       // Création Equipement si besoin
@@ -128,9 +133,9 @@ class mqttRing extends eqLogic
         $eqLogic->setLogicalId($_eqLogicId);
         $eqLogic->setIsEnable(1);
         $eqLogic->setIsVisible(0);
-        $eqLogic->setName($sensors["sensor"]["info"]["device"]["name"]);
-        $eqLogic->setConfiguration("ringMarque", $sensors["sensor"]["info"]["device"]["mf"]);
-        $eqLogic->setConfiguration("ringModele", $sensors["sensor"]["info"]["device"]["mdl"]);
+        $eqLogic->setName($data["device"]["name"]);
+        $eqLogic->setConfiguration("ringMarque", $data["device"]["mf"]);
+        $eqLogic->setConfiguration("ringModele", $data["device"]["mdl"]);
         $eqLogic->save();
         // Disponibilité
         $cmd = new mqttRingCmd();
