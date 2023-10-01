@@ -137,20 +137,6 @@ class mqttRing extends eqLogic
         $eqLogic->setConfiguration("ringMarque", $data["device"]["mf"]);
         $eqLogic->setConfiguration("ringModele", $data["device"]["mdl"]);
         $eqLogic->save();
-        // Disponibilité
-        $cmd = new mqttRingCmd();
-        $cmd->setLogicalId('status');
-        $cmd->setEqLogic_id($eqLogic->getId());
-        $cmd->setName('status');
-        $cmd->setType('info');
-        $cmd->setSubType('binary');
-        $cmd->setIsVisible(1);
-        $cmd->setGeneric_type('GENERIC_INFO');
-        $cmd->setTemplate('dashboard', 'core::alert');
-        $cmd->setTemplate('mobile', 'core::alert');
-        $cmd->setAlert('warningif', '#value#==0');
-        $cmd->setAlert('warningduring', '1');
-        $cmd->save();
       }
       // Préparation des cmdLogicId
       $_subAdd = (strlen(config::byKey('mqtt::topic', __CLASS__, 'ring')) + 2);

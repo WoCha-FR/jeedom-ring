@@ -24,8 +24,7 @@ function mqttRing_update() {
   foreach (eqLogic::byType('mqttRing') as $eqLogic) {
     $cmd = $eqLogic->getCmd('info', 'status');
     if (is_object($cmd)) {
-      $cmd->setAlert('warningduring', '1');
-      $cmd->save();
+      $cmd->remove();
     }
   }
 }
