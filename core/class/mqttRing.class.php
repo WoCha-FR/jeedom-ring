@@ -133,10 +133,26 @@ class mqttRing extends eqLogic
         $eqLogic->setLogicalId($_eqLogicId);
         $eqLogic->setIsEnable(1);
         $eqLogic->setIsVisible(0);
-        $eqLogic->setName($data["device"]["name"]);
-        $eqLogic->setConfiguration("ringMarque", $data["device"]["mf"]);
-        $eqLogic->setConfiguration("ringModele", $data["device"]["mdl"]);
-        $eqLogic->save();
+      }
+      $eqLogic->setName($data["device"]["name"]);
+      $eqLogic->setConfiguration("ringMarque", $data["device"]["mf"]);
+      $eqLogic->setConfiguration("ringModele", $data["device"]["mdl"]);
+      $eqLogic->save();
+      // Dispose d'un statut de connection
+      if ($data["connection_topic"] != 'unavailable') {
+        $cmd = new mqttRingCmd();
+        $cmd->setLogicalId('connection');
+        $cmd->setEqLogic_id($eqLogic->getId());
+        $cmd->setName('online');
+        $cmd->setType('info');
+        $cmd->setSubType('binary');
+        $cmd->setIsVisible(1);
+        $cmd->setGeneric_type('GENERIC_INFO');
+        $cmd->setTemplate('dashboard', 'core::alert');
+        $cmd->setTemplate('mobile', 'core::alert');
+        $cmd->setAlert('warningif', '#value#==0');
+        $cmd->setAlert('warningduring', '5');
+        $cmd->save();
       }
       // Préparation des cmdLogicId
       $_subAdd = (strlen(config::byKey('mqtt::topic', __CLASS__, 'ring')) + 2);
