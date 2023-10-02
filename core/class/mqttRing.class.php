@@ -154,6 +154,78 @@ class mqttRing extends eqLogic
         $cmd->setAlert('warningduring', '5');
         $cmd->save();
       }
+      // Configuration Image & batteries
+      if ($data["device"]["mf"] === 'Ring') {
+        switch ($data["device"]["mdl"]) {
+          case 'Alarm Base Station':
+            $eqLogic->setConfiguration("ringImage", "basestation.png");
+            $eqLogic->save();
+            break;
+          case 'Contact Sensor':
+            $eqLogic->setConfiguration("battery_type", "2x3V CR2032");
+            $eqLogic->setConfiguration("ringImage", "contact.png");
+            $eqLogic->save();
+            break;
+          case 'Motion Sensor':
+            $eqLogic->setConfiguration("battery_type", "2x1.5V AAA");
+            $eqLogic->setConfiguration("ringImage", "motion.png");
+            $eqLogic->save();
+            break;
+          case 'Glassbreak Sensor':
+            $eqLogic->setConfiguration("battery_type", "3x1.5V AAA");
+            $eqLogic->setConfiguration("ringImage", "glassbreak.png");
+            $eqLogic->save();
+            break;
+          case 'Security Keypad':
+            $eqLogic->setConfiguration("ringImage", "keypad.png");
+            $eqLogic->save();
+            break;
+          case 'Z-Wave Range Extender':
+            $eqLogic->setConfiguration("ringImage", "extender.png");
+            $eqLogic->save();
+            break;
+          case 'Intercom':
+            $eqLogic->setConfiguration("ringImage", "intercom.png");
+            $eqLogic->save();
+            break;
+          case 'chime':
+          case 'chime_pro':
+          case 'chime_v2':
+          case 'chime_pro_v2':
+            $eqLogic->setConfiguration("ringImage", "chime.png");
+            $eqLogic->save();
+            break;
+          case 'Doorbell':
+          case 'Doorbell 2':
+          case 'Door View Cam':
+          case 'Doorbell 3':
+          case 'Doorbell 3 Plus':
+          case 'Doorbell Wired':
+          case 'Doorbell Pro':
+          case 'Doorbell Pro 2':
+          case 'Doorbell Elite':
+          case 'Doorbell Gen 2':
+            $eqLogic->setConfiguration("ringImage", "doorbell.png");
+            $eqLogic->save();
+            break;
+          case 'Spotlight Cam':
+          case 'Spotlight Cam Pro':
+            $eqLogic->setConfiguration("ringImage", "spotlight.png");
+            $eqLogic->save();
+            break;
+          case 'Floodlight Cam':
+          case 'Floodlight Pro':
+          case 'Floodlight Cam Plus':
+            $eqLogic->setConfiguration("ringImage", "floodlight.png");
+            $eqLogic->save();
+            break;
+          case 'Stick Up Cam':
+          case 'Indoor Cam':
+            $eqLogic->setConfiguration("ringImage", "camera.png");
+            $eqLogic->save();
+            break;
+        }
+      }
       // Préparation des cmdLogicId
       $_subAdd = (strlen(config::byKey('mqtt::topic', __CLASS__, 'ring')) + 2);
       $_subtopicStart = (strlen($_eqLogicId) + $_subAdd);
@@ -570,6 +642,14 @@ class mqttRing extends eqLogic
         }
       }
     }
+  }
+
+  /* Icones */
+  public function getImage() {
+    if (file_exists(__DIR__.'/../config/devices/'.  $this->getConfiguration('ringImage').'.png')){
+      return 'plugins/mqttRing/core/config/devices/'.  $this->getConfiguration('ringImage').'.png';
+    }
+    return false;
   }
 
   /* Dependencies */

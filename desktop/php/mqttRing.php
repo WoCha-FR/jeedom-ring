@@ -59,7 +59,11 @@ $eqLogics = eqLogic::byType($plugin->getId());
       foreach ($eqLogics as $eqLogic) {
         $opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
         echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '">';
-        echo '<img src="' . $plugin->getPathImgIcon() . '">';
+        if ($eqLogic->getImage() !== false) {
+          echo '<img src="' . $eqLogic->getImage() . '"/>';
+        } else {
+          echo '<img src="' . $plugin->getPathImgIcon() . '">';
+        }
         echo '<br>';
         echo '<span class="name">' . $eqLogic->getHumanName(true, true) . '</span>';
         echo '<span class="hiddenAsCard displayTableRight hidden">';
@@ -169,6 +173,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 <div class="col-sm-6">
                   <textarea class="form-control eqLogicAttr autogrow" data-l1key="comment"></textarea>
                 </div>
+              </div>
+              <div class="form-group">
+              <img src="<?php echo $plugin->getPathImgIcon(); ?>" id="ringImage" style="height: 250px;margin-top: 60px" />
               </div>
             </div>
           </fieldset>
