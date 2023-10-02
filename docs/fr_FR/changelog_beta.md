@@ -4,6 +4,15 @@
 >
 >S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte.
 
+# 03/10/2023
+- Ajout image des équipements pour plus de lisibilité.
+- Ajout information des piles pour les équipements qui en dispose.
+
+# 02/10/2023
+- Mise à jour librairie ring à la version 5.5.2
+- Retrait commande Status qui n'à pas d'utilité.
+- Ajout d'une commande "online" pour les équipements wifi
+
 # 18/06/2023
 - Ajout d'une information binaire : Alarme activée. Type générique ALARM_ENABLE_STATE
 - Ajout d'une information binaire : Alarme déclenchée. Type générique ALARM_STATE

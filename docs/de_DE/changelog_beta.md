@@ -4,6 +4,15 @@
 >
 >Wenn es keine Informationen über die Aktualisierung gibt, handelt es sich nur um eine Aktualisierung der Dokumentation, der Übersetzung oder des Textes.
 
+# 03/10/2023
+- Hinzufügen von Bildern der Geräte zur besseren Lesbarkeit.
+- Informationen über Batterien für Geräte, die über Batterien verfügen, wurden hinzugefügt.
+
+# 02/10/2023
+- Aktualisierung der Ringbibliothek auf Version 5.5.2
+- Entfernen des Status-Befehls, der keinen Nutzen hat.
+- Befehl "online" für WiFi-Geräte hinzugefügt.
+
 # 18/06/2023
 - Hinzufügen einer binären Information: Alarm aktiviert. Generischer Typ ALARM_ENABLE_STATE
 - Hinzufügen einer binären Information: Alarm ausgelöst. Generischer Typ ALARM_STATE
