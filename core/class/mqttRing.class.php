@@ -140,59 +140,63 @@ class mqttRing extends eqLogic
       $eqLogic->save();
       // Dispose d'un statut de connection
       if ($data["connection_topic"] != 'unavailable') {
-        $cmd = new mqttRingCmd();
-        $cmd->setLogicalId('connection');
-        $cmd->setEqLogic_id($eqLogic->getId());
-        $cmd->setName('online');
-        $cmd->setType('info');
-        $cmd->setSubType('binary');
-        $cmd->setIsVisible(1);
-        $cmd->setGeneric_type('GENERIC_INFO');
-        $cmd->setTemplate('dashboard', 'core::alert');
-        $cmd->setTemplate('mobile', 'core::alert');
-        $cmd->setAlert('warningif', '#value#==0');
-        $cmd->setAlert('warningduring', '5');
-        $cmd->save();
+        $cmd = $eqLogic->getCmd('info', 'connection');
+        // Création si besoin
+        if (!is_object($cmd)) {
+          $cmd = new mqttRingCmd();
+          $cmd->setLogicalId('connection');
+          $cmd->setEqLogic_id($eqLogic->getId());
+          $cmd->setName('online');
+          $cmd->setType('info');
+          $cmd->setSubType('binary');
+          $cmd->setIsVisible(1);
+          $cmd->setGeneric_type('GENERIC_INFO');
+          $cmd->setTemplate('dashboard', 'core::alert');
+          $cmd->setTemplate('mobile', 'core::alert');
+          $cmd->setAlert('warningif', '#value#==0');
+          $cmd->setAlert('warningduring', '5');
+          $cmd->save();
+        }
       }
       // Configuration Image & batteries
       if ($data["device"]["mf"] === 'Ring') {
         switch ($data["device"]["mdl"]) {
           case 'Alarm Base Station':
-            $eqLogic->setConfiguration("ringImage", "basestation.png");
+            $eqLogic->setConfiguration("ringImage", "basestation");
             $eqLogic->save();
             break;
           case 'Contact Sensor':
             $eqLogic->setConfiguration("battery_type", "2x3V CR2032");
-            $eqLogic->setConfiguration("ringImage", "contact.png");
+            $eqLogic->setConfiguration("ringImage", "contact");
             $eqLogic->save();
             break;
           case 'Motion Sensor':
             $eqLogic->setConfiguration("battery_type", "2x1.5V AAA");
-            $eqLogic->setConfiguration("ringImage", "motion.png");
+            $eqLogic->setConfiguration("ringImage", "motion");
             $eqLogic->save();
             break;
           case 'Glassbreak Sensor':
             $eqLogic->setConfiguration("battery_type", "3x1.5V AAA");
-            $eqLogic->setConfiguration("ringImage", "glassbreak.png");
+            $eqLogic->setConfiguration("ringImage", "glassbreak");
             $eqLogic->save();
             break;
           case 'Security Keypad':
-            $eqLogic->setConfiguration("ringImage", "keypad.png");
+            $eqLogic->setConfiguration("ringImage", "keypad");
             $eqLogic->save();
             break;
           case 'Z-Wave Range Extender':
-            $eqLogic->setConfiguration("ringImage", "extender.png");
+            $eqLogic->setConfiguration("ringImage", "extender");
             $eqLogic->save();
             break;
           case 'Intercom':
-            $eqLogic->setConfiguration("ringImage", "intercom.png");
+            $eqLogic->setConfiguration("ringImage", "intercom");
             $eqLogic->save();
             break;
           case 'chime':
           case 'chime_pro':
           case 'chime_v2':
           case 'chime_pro_v2':
-            $eqLogic->setConfiguration("ringImage", "chime.png");
+            $eqLogic->setConfiguration("ringImage", "chime");
             $eqLogic->save();
             break;
           case 'Doorbell':
@@ -205,23 +209,23 @@ class mqttRing extends eqLogic
           case 'Doorbell Pro 2':
           case 'Doorbell Elite':
           case 'Doorbell Gen 2':
-            $eqLogic->setConfiguration("ringImage", "doorbell.png");
+            $eqLogic->setConfiguration("ringImage", "doorbell");
             $eqLogic->save();
             break;
           case 'Spotlight Cam':
           case 'Spotlight Cam Pro':
-            $eqLogic->setConfiguration("ringImage", "spotlight.png");
+            $eqLogic->setConfiguration("ringImage", "spotlight");
             $eqLogic->save();
             break;
           case 'Floodlight Cam':
           case 'Floodlight Pro':
           case 'Floodlight Cam Plus':
-            $eqLogic->setConfiguration("ringImage", "floodlight.png");
+            $eqLogic->setConfiguration("ringImage", "floodlight");
             $eqLogic->save();
             break;
           case 'Stick Up Cam':
           case 'Indoor Cam':
-            $eqLogic->setConfiguration("ringImage", "camera.png");
+            $eqLogic->setConfiguration("ringImage", "camera");
             $eqLogic->save();
             break;
         }
