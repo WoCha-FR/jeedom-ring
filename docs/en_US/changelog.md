@@ -4,6 +4,13 @@
 >
 >If there is no information about the update, it means that it is only for documentation, translation or text updates.
 
+# 10/10/2023
+- Image of equipment added for greater legibility.
+- Added battery information for equipment with batteries.
+- Update ring library to version 5.5.2
+- Removal of the Status command, which has no use.
+- Addition of an "online" command for wifi equipment
+
 # 18/06/2023
 - Addition of binary information: Alarm activated. Generic type ALARM_ENABLE_STATE
 - Binary information added: Alarm triggered. Generic type ALARM_STATE
