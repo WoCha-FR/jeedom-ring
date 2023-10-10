@@ -38,6 +38,14 @@ $('#bt_syncRing').off('click').on('click',function(){
   });
 });
 
+$('.eqLogicAttr[data-l1key=configuration][data-l2key=ringImage]').on('change',function(){
+  if ($(this).value() != '') {
+    $('#img_ringModel').attr('src','plugins/mqttRing/core/config/devices/'+$(this).value()+'.png');
+  } else {
+    $('#img_ringModel').attr('src','plugins/mqttRing/plugin_info/mqttRing_icon.png');
+  }
+});
+
 $("#table_cmd").sortable({
   axis: "y",
   cursor: "move",

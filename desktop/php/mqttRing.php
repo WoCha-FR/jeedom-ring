@@ -174,13 +174,10 @@ $eqLogics = eqLogic::byType($plugin->getId());
                   <textarea class="form-control eqLogicAttr autogrow" data-l1key="comment"></textarea>
                 </div>
               </div>
-              <?php
-              if ($eqLogic->getImage() !== false) {
-                echo '<div class="form-group">';
-                echo '<img src="' . $eqLogic->getImage() . '" id="ringImage" style="height: 250px;margin-top: 50px"/>';
-                echo '</div>';
-              }
-              ?>
+              <div class="form-group">
+                <img src="<?php echo $plugin->getPathImgIcon(); ?>" id="img_ringModel" style="height : 250px;margin-top : 60px" />
+                <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="ringImage" style="display:none;">
+              </div>
             </div>
           </fieldset>
         </form>
