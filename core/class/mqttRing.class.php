@@ -192,10 +192,10 @@ class mqttRing extends eqLogic
             $eqLogic->setConfiguration("ringImage", "intercom");
             $eqLogic->save();
             break;
-          case 'chime':
-          case 'chime_pro':
-          case 'chime_v2':
-          case 'chime_pro_v2':
+          case 'Chime':
+          case 'Chime Pro':
+          case 'Chime v2':
+          case 'Chime Pro v2':
             $eqLogic->setConfiguration("ringImage", "chime");
             $eqLogic->save();
             break;
