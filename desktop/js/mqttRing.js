@@ -14,6 +14,30 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+$('#bt_syncRing').off('click').on('click',function(){
+  $('#div_alert').showAlert({message: '{{Synchronisation en cours}}', level: 'warning'});
+  $.ajax({
+    type: "POST",
+    url: "plugins/mqttRing/core/ajax/mqttRing.ajax.php",
+    data: {
+      action: "refresh",
+    },
+    dataType: 'json',
+    global: false,
+    error: function (request, status, error) {
+      handleAjaxError(request, status, error);
+    },
+    success: function (data) {
+      if (data.state != 'ok') {
+        $('#div_alert').showAlert({message: data.result, level: 'danger'});
+        return;
+      }
+      $('#div_alert').showAlert({message: '{{Operation realisee avec succes}}', level: 'success'});
+      window.location.reload();
+    }
+  });
+});
+
 $("#table_cmd").sortable({
   axis: "y",
   cursor: "move",

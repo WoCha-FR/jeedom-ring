@@ -30,6 +30,11 @@ $eqLogics = eqLogic::byType($plugin->getId());
     <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
     <!-- Boutons de gestion du plugin -->
     <div class="eqLogicThumbnailContainer">
+      <div class="cursor logoSecondary" id="bt_syncRing">
+        <i class="fas fa-sync-alt"></i>
+        <br>
+        <span>{{Synchronisation}}</span>
+      </div>
       <div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf">
         <i class="fas fa-wrench"></i>
         <br>
@@ -54,7 +59,11 @@ $eqLogics = eqLogic::byType($plugin->getId());
       foreach ($eqLogics as $eqLogic) {
         $opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
         echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '">';
-        echo '<img src="' . $plugin->getPathImgIcon() . '">';
+        if ($eqLogic->getImage() !== false) {
+          echo '<img src="' . $eqLogic->getImage() . '"/>';
+        } else {
+          echo '<img src="' . $plugin->getPathImgIcon() . '">';
+        }
         echo '<br>';
         echo '<span class="name">' . $eqLogic->getHumanName(true, true) . '</span>';
         echo '<span class="hiddenAsCard displayTableRight hidden">';
@@ -165,6 +174,13 @@ $eqLogics = eqLogic::byType($plugin->getId());
                   <textarea class="form-control eqLogicAttr autogrow" data-l1key="comment"></textarea>
                 </div>
               </div>
+              <?php
+              if ($eqLogic->getImage() !== false) {
+                echo '<div class="form-group">';
+                echo '<img src="' . $eqLogic->getImage() . '" id="ringImage" style="height: 250px;margin-top: 50px"/>';
+                echo '</div>';
+              }
+              ?>
             </div>
           </fieldset>
         </form>

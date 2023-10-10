@@ -116,36 +116,119 @@ class mqttRing extends eqLogic
     // Parcours des configurations
     foreach( $_values as $uniqID => $sensors ) {
       log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Configuration pour ', __FILE__) . $uniqID);
-      // On determine l'eqLogicId
+      // alarm_control_panel virtuel
+      if (substr($uniqID, -5) == '_mode') {
+        $data = $sensors["alarm_control_panel"]["mode"];
+      } else {
+        $data = $sensors["sensor"]["info"];
+      }
       $_start = (strlen(config::byKey('mqtt::topic', __CLASS__, 'ring')) + 1);
-      $_eqLogicId = substr($sensors["sensor"]["info"]["availability_topic"], $_start, -7);
+      $_eqLogicId = substr($data["availability_topic"], $_start, -7);
       // On recherche
       $eqLogic = self::byLogicalId($_eqLogicId, __CLASS__);
-      // Création si besoin
+      // Création Equipement si besoin
       if (!is_object($eqLogic)) {
         $eqLogic = new mqttRing();
         $eqLogic->setEqType_name(__CLASS__);
         $eqLogic->setLogicalId($_eqLogicId);
         $eqLogic->setIsEnable(1);
         $eqLogic->setIsVisible(0);
-        $eqLogic->setName($sensors["sensor"]["info"]["device"]["name"]);
-        $eqLogic->setConfiguration("ringMarque", $sensors["sensor"]["info"]["device"]["mf"]);
-        $eqLogic->setConfiguration("ringModele", $sensors["sensor"]["info"]["device"]["mdl"]);
-        $eqLogic->save();
-        // Disponibilité
-        $cmd = new mqttRingCmd();
-        $cmd->setLogicalId('status');
-        $cmd->setEqLogic_id($eqLogic->getId());
-        $cmd->setName('status');
-        $cmd->setType('info');
-        $cmd->setSubType('binary');
-        $cmd->setIsVisible(1);
-        $cmd->setGeneric_type('GENERIC_INFO');
-        $cmd->setTemplate('dashboard', 'core::alert');
-        $cmd->setTemplate('mobile', 'core::alert');
-        $cmd->setAlert('warningif', '#value#==0');
-        $cmd->setAlert('warningduring', '1');
-        $cmd->save();
+      }
+      $eqLogic->setName($data["device"]["name"]);
+      $eqLogic->setConfiguration("ringMarque", $data["device"]["mf"]);
+      $eqLogic->setConfiguration("ringModele", $data["device"]["mdl"]);
+      $eqLogic->save();
+      // Dispose d'un statut de connection
+      if ($data["connection_topic"] != 'unavailable') {
+        $cmd = $eqLogic->getCmd('info', 'connection');
+        // Création si besoin
+        if (!is_object($cmd)) {
+          $cmd = new mqttRingCmd();
+          $cmd->setLogicalId('connection');
+          $cmd->setEqLogic_id($eqLogic->getId());
+          $cmd->setName('online');
+          $cmd->setType('info');
+          $cmd->setSubType('binary');
+          $cmd->setIsVisible(1);
+          $cmd->setGeneric_type('GENERIC_INFO');
+          $cmd->setTemplate('dashboard', 'core::alert');
+          $cmd->setTemplate('mobile', 'core::alert');
+          $cmd->setAlert('warningif', '#value#==0');
+          $cmd->setAlert('warningduring', '5');
+          $cmd->save();
+        }
+      }
+      // Configuration Image & batteries
+      if ($data["device"]["mf"] === 'Ring') {
+        switch ($data["device"]["mdl"]) {
+          case 'Alarm Base Station':
+            $eqLogic->setConfiguration("ringImage", "basestation");
+            $eqLogic->save();
+            break;
+          case 'Contact Sensor':
+            $eqLogic->setConfiguration("battery_type", "2x3V CR2032");
+            $eqLogic->setConfiguration("ringImage", "contact");
+            $eqLogic->save();
+            break;
+          case 'Motion Sensor':
+            $eqLogic->setConfiguration("battery_type", "2x1.5V AAA");
+            $eqLogic->setConfiguration("ringImage", "motion");
+            $eqLogic->save();
+            break;
+          case 'Glassbreak Sensor':
+            $eqLogic->setConfiguration("battery_type", "3x1.5V AAA");
+            $eqLogic->setConfiguration("ringImage", "glassbreak");
+            $eqLogic->save();
+            break;
+          case 'Security Keypad':
+            $eqLogic->setConfiguration("ringImage", "keypad");
+            $eqLogic->save();
+            break;
+          case 'Z-Wave Range Extender':
+            $eqLogic->setConfiguration("ringImage", "extender");
+            $eqLogic->save();
+            break;
+          case 'Intercom':
+            $eqLogic->setConfiguration("ringImage", "intercom");
+            $eqLogic->save();
+            break;
+          case 'chime':
+          case 'chime_pro':
+          case 'chime_v2':
+          case 'chime_pro_v2':
+            $eqLogic->setConfiguration("ringImage", "chime");
+            $eqLogic->save();
+            break;
+          case 'Doorbell':
+          case 'Doorbell 2':
+          case 'Door View Cam':
+          case 'Doorbell 3':
+          case 'Doorbell 3 Plus':
+          case 'Doorbell Wired':
+          case 'Doorbell Pro':
+          case 'Doorbell Pro 2':
+          case 'Doorbell Elite':
+          case 'Doorbell Gen 2':
+            $eqLogic->setConfiguration("ringImage", "doorbell");
+            $eqLogic->save();
+            break;
+          case 'Spotlight Cam':
+          case 'Spotlight Cam Pro':
+            $eqLogic->setConfiguration("ringImage", "spotlight");
+            $eqLogic->save();
+            break;
+          case 'Floodlight Cam':
+          case 'Floodlight Pro':
+          case 'Floodlight Cam Plus':
+            $eqLogic->setConfiguration("ringImage", "floodlight");
+            $eqLogic->save();
+            break;
+          case 'Stick Up Cam':
+          case 'Indoor Cam':
+            $eqLogic->setConfiguration("ringImage", "camera");
+            $eqLogic->save();
+            break;
+        }
       }
       // Préparation des cmdLogicId
       $_subAdd = (strlen(config::byKey('mqtt::topic', __CLASS__, 'ring')) + 2);
@@ -468,7 +551,11 @@ class mqttRing extends eqLogic
             break;
           // Panneau de contôle alarme
           case "alarm_control_panel" :
-            $data = $_sensors["alarm"];
+            if (isset($_sensors["mode"])) {
+              $data = $_sensors["mode"]; // Panneau virtuel site Base Station
+            } else {
+              $data = $_sensors["alarm"]; // Panneau site avec Base Station
+            }
             $cmdLogicId = substr($data["state_topic"], $_subtopicStart);
             // Commande alarm/state
             $cmd = $eqLogic->getCmd('info', $cmdLogicId);
@@ -523,6 +610,8 @@ class mqttRing extends eqLogic
             }
             // Commandes actions
             $_modes = array('arm_away','arm_home','disarm');
+            // ID de la commande info 'alarme/state'
+            $cmdvalue = $eqLogic->getCmd('info', 'alarme/state');
             foreach( $_modes as $mode ) {
               $cmdaLogicId = substr($data["command_topic"], $_subtopicStart) . '%' . $mode;
               $cmda = $eqLogic->getCmd('action', $cmdaLogicId);
@@ -534,6 +623,7 @@ class mqttRing extends eqLogic
                 $cmda->setName($mode);
                 $cmda->setType('action');
                 $cmda->setSubType('other');
+                $cmda->setValue($cmdvalue);
                 $cmda->setGeneric_type('ALARM_SET_MODE');
                 $cmda->setTemplate('dashboard', 'default');
                 $cmda->setTemplate('mobile', 'default');
@@ -543,7 +633,7 @@ class mqttRing extends eqLogic
                 } else if( $mode == 'arm_home' ) {
                   $cmda->setDisplay('icon', '<i class="icon jeedomapp-in icon_orange"></i>');
                 } else {
-                  $cmda->setDisplay('icon', '<i class="icon jeedom-off icon_green"></i>');
+                  $cmda->setDisplay('icon', '<i class="icon jeedomapp-alarme icon_green"></i>');
                 }
                 $cmda->save();
                 log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $mode);
@@ -556,6 +646,14 @@ class mqttRing extends eqLogic
         }
       }
     }
+  }
+
+  /* Icones */
+  public function getImage() {
+    if (file_exists(__DIR__.'/../config/devices/'.  $this->getConfiguration('ringImage').'.png')){
+      return 'plugins/mqttRing/core/config/devices/'.  $this->getConfiguration('ringImage').'.png';
+    }
+    return false;
   }
 
   /* Dependencies */
