@@ -1,8 +1,19 @@
 # Changelog mqttRing - BETA
 
->**IMPORTANT**
+>**WICHTIG**
+>
+>Die vom Plugin verwendete Bibliothek benötigt nodeJS 18, um optimal zu funktionieren.
+>Es wird daher empfohlen, Jeedom auf die Version 4.3.19 zu aktualisieren, um abnormale Funktionsweisen zu vermeiden.
+
+>**WICHTIG**
 >
 >Wenn es keine Informationen über die Aktualisierung gibt, handelt es sich nur um eine Aktualisierung der Dokumentation, der Übersetzung oder des Textes.
+
+# 02/11/2023
+- Übersetzter Alarmstatus anstelle von Rohdaten.
+
+# 31/10/2023
+- Aktualisierung der Ringbibliothek auf Version 5.6.3
 
 # 03/10/2023
 - Hinzufügen von Bildern der Geräte zur besseren Lesbarkeit.

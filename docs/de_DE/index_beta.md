@@ -6,6 +6,8 @@ Interaktionen mit einem RING-Alarmsystem und Jeedom über MQTT.
 
 Dieses Plugin verwendet [ring-mqtt](https://github.com/tsightler/ring-mqtt), das für Jeedom modifiziert wurde.
 
+Seit November 2013 benötigt das Plugin Jeedom 4.3.19 (nodeJS v18), um optimal zu funktionieren.
+
 ## Voraussetzungen
 
 - Sie müssen über ein RING Alarm-Konto verfügen, mit oder ohne Abonnement.

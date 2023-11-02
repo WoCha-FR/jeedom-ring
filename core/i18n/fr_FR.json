@@ -22,7 +22,13 @@
     "Snapshot invalide reçu.": "Snapshot invalide reçu.",
     "Type non géré ": "Type non géré ",
     "Veuillez vérifier la configuration": "Veuillez vérifier la configuration",
-    "Dépendances non installées.": "Dépendances non installées."
+    "Dépendances non installées.": "Dépendances non installées.",
+    "Désactivée": "Désactivée",
+    "Domicile": "Domicile",
+    "Extérieur": "Extérieur",
+    "Armement": "Armement",
+    "Attente Code": "Attente Code",
+    "En alarme": "En alarme"
   },
   "plugins/mqttRing/desktop/js/mqttRing.js": {
     "Afficher": "Afficher",

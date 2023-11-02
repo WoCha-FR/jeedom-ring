@@ -2,7 +2,16 @@
 
 >**IMPORTANTE**
 >
+>La biblioteca utilizada por el plugin requiere nodeJS 18 para un rendimiento óptimo.
+>Por lo tanto, se recomienda actualizar Jeedom a la versión 4.3.19 para evitar un funcionamiento anormal.
+
+>**IMPORTANTE**
+>
 >Si no hay información sobre la actualización, significa que sólo se trata de actualizaciones de documentación, traducción o texto.
+
+# 02/11/2023
+- Estado de alarma traducido en lugar de datos brutos.
+- Actualización de la biblioteca de anillos a la versión 5.6.3
 
 # 10/10/2023
 - Imagen del equipo añadida para mayor legibilidad.

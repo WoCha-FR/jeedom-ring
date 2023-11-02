@@ -22,7 +22,13 @@
     "Snapshot invalide reçu.": "Invalid snapshot received.",
     "Type non géré ": "Unmanaged type ",
     "Veuillez vérifier la configuration": "Please check the configuration",
-    "Dépendances non installées.": "Uninstalled outbuildings."
+    "Dépendances non installées.": "Uninstalled outbuildings.",
+    "Désactivée": "Disarmed",
+    "Domicile": "Home",
+    "Extérieur": "Away",
+    "Armement": "Arming",
+    "Attente Code": "Pending",
+    "En alarme": "Triggered"
   },
   "plugins/mqttRing/desktop/js/mqttRing.js": {
     "Afficher": "Post",
