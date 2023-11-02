@@ -22,7 +22,13 @@
     "Snapshot invalide reçu.": "Se ha recibido una instantánea no válida.",
     "Type non géré ": "Tipo no administrado ",
     "Veuillez vérifier la configuration": "Por favor, compruebe la configuración",
-    "Dépendances non installées.": "Dependencias no instaladas."
+    "Dépendances non installées.": "Dependencias no instaladas.",
+    "Désactivée": "Desactivado",
+    "Domicile": "Inicio",
+    "Extérieur": "Exterior",
+    "Armement": "Armado",
+    "Attente Code": "Código de espera",
+    "En alarme": "En alarma"
   },
   "plugins/mqttRing/desktop/js/mqttRing.js": {
     "Afficher": "Exponer",

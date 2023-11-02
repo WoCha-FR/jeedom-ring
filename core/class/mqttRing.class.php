@@ -81,21 +81,44 @@ class mqttRing extends eqLogic
             log::add(__CLASS__, 'debug', __('Commande ', __FILE__) . $_cmdLogicalId . __(' inconnue dans l\'equipement ', __FILE__) . $_eqLogicalId);
             continue;
           }
+          // Traduction des états
           // Binaire "virtuel" Alarme activée
           // Binaire "virtuel" En Alarme
           if ($_cmdLogicalId == 'alarm/state') {
-            if ($_value == 'disarmed') {
-              $eqLogic->checkAndUpdateCmd('alarmactive', 0);
-            } else {
-              $eqLogic->checkAndUpdateCmd('alarmactive', 1);
-            }
-            if ($_value == 'triggered') {
-              $eqLogic->checkAndUpdateCmd('enalarme', 0);
-            } else {
-              $eqLogic->checkAndUpdateCmd('enalarme', 1);
+            switch($_value) {
+              case "disarmed":
+                $_value = __('Désactivée', __FILE__);
+                $eqLogic->checkAndUpdateCmd('alarmactive', 0);
+                $eqLogic->checkAndUpdateCmd('enalarme', 1);
+                break;
+              case "armed_home":
+                $_value = __('Domicile', __FILE__);
+                $eqLogic->checkAndUpdateCmd('alarmactive', 1);
+                $eqLogic->checkAndUpdateCmd('enalarme', 1);
+                break;
+              case "armed_away":
+                $_value = __('Extérieur', __FILE__);
+                $eqLogic->checkAndUpdateCmd('alarmactive', 1);
+                $eqLogic->checkAndUpdateCmd('enalarme', 1);
+                break;
+              case "arming":
+                $_value = __('Armement', __FILE__);
+                $eqLogic->checkAndUpdateCmd('alarmactive', 1);
+                $eqLogic->checkAndUpdateCmd('enalarme', 1);
+                break;
+              case "pending":
+                $_value = __('Attente Code', __FILE__);
+                $eqLogic->checkAndUpdateCmd('alarmactive', 1);
+                $eqLogic->checkAndUpdateCmd('enalarme', 1);
+                break;
+              case "triggered":
+                $_value = __('En alarme', __FILE__);
+                $eqLogic->checkAndUpdateCmd('alarmactive', 1);
+                $eqLogic->checkAndUpdateCmd('enalarme', 0);
+                break;
             }
           }
-          // Traitement de la valeur
+          // Traitement des valeurs binaires
           $val_ok = array('online', 'on', 'ok', 'locked');
           if( $cmd->getSubType() == 'binary' ) {
             if( in_array(strtolower($_value), $val_ok )) {

@@ -22,7 +22,13 @@
     "Snapshot invalide reçu.": "Ungültiger Snapshot empfangen.",
     "Type non géré ": "Nicht verwalteter Typ ",
     "Veuillez vérifier la configuration": "Bitte überprüfen Sie die Konfiguration",
-    "Dépendances non installées.": "Nicht installierte Nebengebäude."
+    "Dépendances non installées.": "Nicht installierte Nebengebäude.",
+    "Désactivée": "Deaktiviert",
+    "Domicile": "Wohnort",
+    "Extérieur": "Außen",
+    "Armement": "Bewaffnung",
+    "Attente Code": "Warten Code",
+    "En alarme": "In Alarm"
   },
   "plugins/mqttRing/desktop/js/mqttRing.js": {
     "Afficher": "Bereitstellen",

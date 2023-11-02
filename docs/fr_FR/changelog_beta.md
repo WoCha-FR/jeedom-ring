@@ -2,7 +2,18 @@
 
 >**IMPORTANT**
 >
+>La librairie utilisée par le plugin nécessite nodeJS 18 pour un fonctionnement optimal.
+>Il est donc recommandé de mettre a jour Jeedom à la version 4.3.19 pour éviter des fonctionnements anormaux.
+
+>**IMPORTANT**
+>
 >S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte.
+
+# 02/11/2023
+- Etat de l'alarme traduit au lieu de la données brute.
+
+# 31/10/2023
+- Mise à jour librairie ring à la version 5.6.3
 
 # 03/10/2023
 - Ajout image des équipements pour plus de lisibilité.
