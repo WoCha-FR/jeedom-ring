@@ -2,7 +2,16 @@
 
 >**IMPORTANT**
 >
+>The library used by the plugin requires nodeJS 18 for optimal performance.
+>It is therefore recommended that you update Jeedom to version 4.3.19 to avoid abnormal operation.
+
+>**IMPORTANT**
+>
 >If there is no information about the update, it means that it is only for documentation, translation or text updates.
+
+# 02/11/2023
+- Alarm status translated instead of raw data.
+- Update ring library to version 5.6.3
 
 # 10/10/2023
 - Image of equipment added for greater legibility.

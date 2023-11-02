@@ -1,8 +1,17 @@
 # Changelog mqttRing
 
->**IMPORTANT**
+>**WICHTIG**
+>
+>Die vom Plugin verwendete Bibliothek benötigt nodeJS 18, um optimal zu funktionieren.
+>Es wird daher empfohlen, Jeedom auf die Version 4.3.19 zu aktualisieren, um abnormale Funktionsweisen zu vermeiden.
+
+>**WICHTIG**
 >
 >Wenn es keine Informationen über die Aktualisierung gibt, handelt es sich nur um eine Aktualisierung der Dokumentation, der Übersetzung oder des Textes.
+
+# 02/11/2023
+- Übersetzter Alarmstatus anstelle von Rohdaten.
+- Aktualisierung der Ringbibliothek auf Version 5.6.3
 
 # 10/10/2023
 - Hinzufügen von Bildern der Geräte zur besseren Lesbarkeit.
@@ -20,7 +29,7 @@
 - Infos & Aktionen von RING INTERCOM hinzugefügt.
 - Wiederherstellung des RTSP-Streams
 
->**IMPORTANT**
+>**WICHTIG**
 >
 >Wenn Sie nach dem Upgrade keine Benachrichtigungen erhalten (Klingel,...),
 >müssen Sie alle zuvor authentifizierten ring-mqtt-Instanzen aus dem Ring Control Center entfernen.

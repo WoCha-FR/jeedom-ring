@@ -6,13 +6,15 @@ Interactions avec un système d'alarme RING et Jeedom via MQTT.
 
 Ce plugin utilise [ring-mqtt](https://github.com/tsightler/ring-mqtt) modifié pour Jeedom.
 
+Depuis novembre 2013, le plugin requiert Jeedom 4.3.19 (nodeJS v18) pour un fonctionnement optimal.
+
 ## Pré-Requis
 
 - Vous devez disposer d'un compte RING Alarm, avec ou sans souscription à l'abonnement.
 - Ce plugin requiert [MQTT Manager](https://market.jeedom.com/index.php?v=d&p=market_display&id=4213), plugin officiel et gratuit.
 - Pour avoir les captures des caméras, vous devez disposer d'un abonnement RING actif.
 
-## Installation 
+## Installation
 
 - Télécharger le plugin depuis le market
 - Activer le plugin
