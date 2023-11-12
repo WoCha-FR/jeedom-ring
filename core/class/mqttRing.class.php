@@ -587,7 +587,7 @@ class mqttRing extends eqLogic
                   $cmda->setGeneric_type('LIGHT_ON');
                   $cmda->setTemplate('dashboard', 'core::light');
                   $cmda->setTemplate('mobile', 'core::light');
-                  $cmd->setIsVisible(0);
+                  $cmda->setIsVisible(0);
                   $cmda->save();
                   log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $type . '_on');
                 }
@@ -605,7 +605,7 @@ class mqttRing extends eqLogic
                   $cmda->setGeneric_type('LIGHT_OFF');
                   $cmda->setTemplate('dashboard', 'core::light');
                   $cmda->setTemplate('mobile', 'core::light');
-                  $cmd->setIsVisible(0);
+                  $cmda->setIsVisible(0);
                   $cmda->save();
                   log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $type . '_off');
                 }
