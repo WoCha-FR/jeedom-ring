@@ -88,6 +88,16 @@ if (!isConnect()) {
       </div>
     </div>
     <div class="form-group">
+      <label class="col-md-4 control-label">{{Afficher les commandes inconnues dans le log DEBUG}}
+      </label>
+      <div class="col-md-4">
+        <select class="configKey form-control" data-l1key="ring::allcmd">
+          <option value="non">{{Non}}</option>
+          <option value="oui">{{Oui}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
       <label class="col-md-4 control-label">{{Identification RING}}</label>
       <div class="col-md-3">
         <a class="btn btn-default" id="bt_ringAuthPage"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{Ouvrir}}</a>

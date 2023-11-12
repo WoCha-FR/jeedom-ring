@@ -78,8 +78,8 @@ class mqttRing extends eqLogic
           // Commande Existante
           $cmd = $eqLogic->getCmd('info', $_cmdLogicalId);
           // Commande Inexistante
-          if (!is_object($cmd)) {
-            log::add(__CLASS__ . '_inconnues', 'debug', __('Commande ', __FILE__) . $_cmdLogicalId . __(' inconnue dans l\'equipement ', __FILE__) . $_eqLogicalId);
+          if (!is_object($cmd) && (config::byKey('ring::allcmd', __CLASS__, 'non') !== 'non')) {
+            log::add(__CLASS__, 'debug', __('Commande ', __FILE__) . $_cmdLogicalId . __(' inconnue dans l\'equipement ', __FILE__) . $_eqLogicalId);
             continue;
           }
           // Traduction des états
@@ -704,7 +704,7 @@ class mqttRing extends eqLogic
             break;
           // Default
           default:
-            log::add(__CLASS__, 'warning', '[' . $uniqID . '] ' . __('Type non géré ', __FILE__) . $famille);
+            log::add(__CLASS__, 'info', '[' . $uniqID . '] ' . __('Type non géré ', __FILE__) . $famille);
         }
       }
     }

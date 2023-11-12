@@ -86,6 +86,7 @@
     "Activation des caméras": "Activating cameras",
     "Activation des modes": "Enabling modes",
     "Ajouter les boutons Police, Incendie, ...": "Add the buttons Police, Fire, ...",
+    "Afficher les commandes inconnues dans le log DEBUG": "Display unknown commands in the DEBUG log",
     "Authentification Ring": "Ring Authentication",
     "Identification RING": "Identification RING",
     "Modes d'alarmes pour les sites avec caméras uniquement": "Alarm modes for camera-only sites",
