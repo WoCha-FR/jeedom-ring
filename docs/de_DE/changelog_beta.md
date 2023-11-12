@@ -9,6 +9,10 @@
 >
 >Wenn es keine Informationen über die Aktualisierung gibt, handelt es sich nur um eine Aktualisierung der Dokumentation, der Übersetzung oder des Textes.
 
+# 12/11/2023
+- Unbekannte Befehle werden nicht mehr im Log angezeigt. Reaktivierung in der Konfiguration möglich.
+- An-/Aus-Aktion für Lichter erstellen.
+
 # 02/11/2023
 - Übersetzter Alarmstatus anstelle von Rohdaten.
 

@@ -9,6 +9,10 @@
 >
 >If there is no information about the update, it means that it is only for documentation, translation or text updates.
 
+# 12/11/2023
+- Unknown commands are no longer displayed in the log. Reactivation possible in configuration.
+- On / Off action created for lights.
+
 # 02/11/2023
 - Alarm status translated instead of raw data.
 - Update ring library to version 5.6.3

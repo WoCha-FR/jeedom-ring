@@ -9,6 +9,10 @@
 >
 >Si no hay información sobre la actualización, significa que sólo se trata de actualizaciones de documentación, traducción o texto.
 
+# 12/11/2023
+- Los comandos desconocidos ya no se muestran en el registro. Reactivación posible en configuración.
+- Acción de encendido / apagado creada para las luces.
+
 # 02/11/2023
 - Estado de alarma traducido en lugar de datos brutos.
 
