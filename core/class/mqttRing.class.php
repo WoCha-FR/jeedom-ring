@@ -77,7 +77,8 @@ class mqttRing extends eqLogic
           }
           // Commande Existante
           $cmd = $eqLogic->getCmd('info', $_cmdLogicalId);
-          if (!is_object($cmd)) {
+          // Commande Inexistante
+          if (!is_object($cmd) && (config::byKey('ring::allcmd', __CLASS__, 'non') !== 'non')) {
             log::add(__CLASS__, 'debug', __('Commande ', __FILE__) . $_cmdLogicalId . __(' inconnue dans l\'equipement ', __FILE__) . $_eqLogicalId);
             continue;
           }
@@ -525,26 +526,26 @@ class mqttRing extends eqLogic
                 $cmd->setType('info');
                 $cmd->setSubType('binary');
                 $cmd->setIsVisible(0);
-                if( $type == 'light') {
-                  $cmd->setGeneric_type('LIGHT_STATE_BOOL');
-                  $cmd->setTemplate('dashboard', 'core::light');
-                  $cmd->setTemplate('mobile', 'core::light');
-                } else if( $type == 'siren' || $type == 'fire' || $type == 'police' ) {
-                  $cmd->setGeneric_type('SIREN_STATE');
-                  $cmd->setTemplate('dashboard', 'default');
-                  $cmd->setTemplate('mobile', 'default');
-                } else {
-                  $cmd->setGeneric_type('GENERIC_INFO');
-                  $cmd->setTemplate('dashboard', 'default');
-                  $cmd->setTemplate('mobile', 'default');
-                }
-                $cmd->save();
                 log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Info ', __FILE__) . $uniqID . ':' . $type);
               }
+              if( $type == 'light') {
+                $cmd->setGeneric_type('LIGHT_STATE');
+                $cmd->setTemplate('dashboard', 'core::light');
+                $cmd->setTemplate('mobile', 'core::light');
+              } else if( $type == 'siren' || $type == 'fire' || $type == 'police' ) {
+                $cmd->setGeneric_type('SIREN_STATE');
+                $cmd->setTemplate('dashboard', 'default');
+                $cmd->setTemplate('mobile', 'default');
+              } else {
+                $cmd->setGeneric_type('GENERIC_INFO');
+                $cmd->setTemplate('dashboard', 'default');
+                $cmd->setTemplate('mobile', 'default');
+              }
+              $cmd->save();
               // Commande Action
               $cmdaLogicId = substr($data["command_topic"], $_subtopicStart);
               $cmda = $eqLogic->getCmd('action', $cmdaLogicId);
-              // Création ACTION Toggle si besoin
+              // Création ACTION TOGGLE si besoin
               if (!is_object($cmda)) {
                 $cmda = new mqttRingCmd();
                 $cmda->setLogicalId($cmdaLogicId);
@@ -554,21 +555,60 @@ class mqttRing extends eqLogic
                 $cmda->setSubType('other');
                 $cmda->setValue($cmd->getId());
                 $cmda->setConfiguration('value', 'toggle');
-                if( $type == 'light') {
-                  $cmda->setGeneric_type('LIGHT_TOGGLE');
+                log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $type . '_toggle');
+              }
+              if( $type == 'light') {
+                $cmda->setGeneric_type('LIGHT_TOGGLE');
+                $cmda->setTemplate('dashboard', 'core::light');
+                $cmda->setTemplate('mobile', 'core::light');
+              }else if( $type == 'siren' || $type == 'fire' || $type == 'police' ) {
+                $cmda->setGeneric_type('GENERIC_ACTION');
+                $cmda->setTemplate('dashboard', 'core::alert');
+                $cmda->setTemplate('mobile', 'core::alert');
+              } else {
+                $cmda->setGeneric_type('GENERIC_ACTION');
+                $cmda->setTemplate('dashboard', 'core::toggle');
+                $cmda->setTemplate('mobile', 'core::toggle');
+              }
+              $cmda->save();
+              // Création ACTION ON & OFF si besoin
+              if( $type == 'light') {
+                // ON
+                $cmdaLogicId = substr($data["command_topic"], $_subtopicStart) . '%ON';
+                $cmda = $eqLogic->getCmd('action', $cmdaLogicId);
+                if (!is_object($cmda)) {
+                  $cmda = new mqttRingCmd();
+                  $cmda->setLogicalId($cmdaLogicId);
+                  $cmda->setEqLogic_id($eqLogic->getId());
+                  $cmda->setName($type.'_on');
+                  $cmda->setType('action');
+                  $cmda->setSubType('other');
+                  $cmda->setValue($cmd->getId());
+                  $cmda->setGeneric_type('LIGHT_ON');
                   $cmda->setTemplate('dashboard', 'core::light');
                   $cmda->setTemplate('mobile', 'core::light');
-                }else if( $type == 'siren' || $type == 'fire' || $type == 'police' ) {
-                  $cmda->setGeneric_type('LIGHT_TOGGLE');
-                  $cmda->setTemplate('dashboard', 'core::alert');
-                  $cmda->setTemplate('mobile', 'core::alert');
-                } else {
-                  $cmda->setGeneric_type('GENERIC_ACTION');
-                  $cmda->setTemplate('dashboard', 'core::toggle');
-                  $cmda->setTemplate('mobile', 'core::toggle');
+                  $cmd->setIsVisible(0);
+                  $cmda->save();
+                  log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $type . '_on');
                 }
-                $cmda->save();
-                log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $type);
+                // OFF
+                $cmdaLogicId = substr($data["command_topic"], $_subtopicStart) . '%OFF';
+                $cmda = $eqLogic->getCmd('action', $cmdaLogicId);
+                if (!is_object($cmda)) {
+                  $cmda = new mqttRingCmd();
+                  $cmda->setLogicalId($cmdaLogicId);
+                  $cmda->setEqLogic_id($eqLogic->getId());
+                  $cmda->setName($type.'_off');
+                  $cmda->setType('action');
+                  $cmda->setSubType('other');
+                  $cmda->setValue($cmd->getId());
+                  $cmda->setGeneric_type('LIGHT_OFF');
+                  $cmda->setTemplate('dashboard', 'core::light');
+                  $cmda->setTemplate('mobile', 'core::light');
+                  $cmd->setIsVisible(0);
+                  $cmda->save();
+                  log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $type . '_off');
+                }
               }
             }
             break;
@@ -650,7 +690,6 @@ class mqttRing extends eqLogic
                 $cmda->setGeneric_type('ALARM_SET_MODE');
                 $cmda->setTemplate('dashboard', 'default');
                 $cmda->setTemplate('mobile', 'default');
-                $cmda->setConfiguration('value', $mode);
                 if( $mode == 'arm_away') {
                   $cmda->setDisplay('icon', '<i class="icon jeedomapp-out icon_red"></i>');
                 } else if( $mode == 'arm_home' ) {
@@ -665,7 +704,7 @@ class mqttRing extends eqLogic
             break;
           // Default
           default:
-            log::add(__CLASS__, 'warning', '[' . $uniqID . '] ' . __('Type non géré ', __FILE__) . $famille);
+            log::add(__CLASS__, 'info', '[' . $uniqID . '] ' . __('Type non géré ', __FILE__) . $famille);
         }
       }
     }
@@ -857,11 +896,10 @@ class mqttRingCmd extends cmd
         $value = strval(floor($_options['slider']));
         break;
       case 'other' :
-        // Change Mode Alarm
+        // Change Mode Alarm, Switch On, Switch Off
         if( strpos( $subTopic, '%') !== false ) {
-          list( $subTopic, ) = explode('%', $subTopic);
-          $value = $this->getConfiguration('value');
-        // Toggle
+          list( $subTopic, $value) = explode('%', $subTopic);
+        // Toggle (Lumière, sirène, etc...)
         } else if( $this->getConfiguration('value') == 'toggle' ) {
           $valCmd = cmd::byId($this->getValue());
           if ($valCmd->execCmd() == '0') {
@@ -887,7 +925,6 @@ class mqttRingCmd extends cmd
         $value = $this->getConfiguration('message');
         break;
     }
-
     log::add('mqttRing', 'debug', 'ACTION: ' . json_encode($_options));
     log::add('mqttRing', 'info', 'ACTION: ' . $rooTopic . '/' . $subTopic . ' => ' . $value);
     mqtt2::publish($rooTopic . '/' . $subTopic, $value);
