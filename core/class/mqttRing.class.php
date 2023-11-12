@@ -77,8 +77,9 @@ class mqttRing extends eqLogic
           }
           // Commande Existante
           $cmd = $eqLogic->getCmd('info', $_cmdLogicalId);
+          // Commande Inexistante
           if (!is_object($cmd)) {
-            log::add(__CLASS__, 'debug', __('Commande ', __FILE__) . $_cmdLogicalId . __(' inconnue dans l\'equipement ', __FILE__) . $_eqLogicalId);
+            log::add(__CLASS__ . '_inconnues', 'debug', __('Commande ', __FILE__) . $_cmdLogicalId . __(' inconnue dans l\'equipement ', __FILE__) . $_eqLogicalId);
             continue;
           }
           // Traduction des états
@@ -586,6 +587,7 @@ class mqttRing extends eqLogic
                   $cmda->setGeneric_type('LIGHT_ON');
                   $cmda->setTemplate('dashboard', 'core::light');
                   $cmda->setTemplate('mobile', 'core::light');
+                  $cmd->setIsVisible(0);
                   $cmda->save();
                   log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $type . '_on');
                 }
@@ -603,6 +605,7 @@ class mqttRing extends eqLogic
                   $cmda->setGeneric_type('LIGHT_OFF');
                   $cmda->setTemplate('dashboard', 'core::light');
                   $cmda->setTemplate('mobile', 'core::light');
+                  $cmd->setIsVisible(0);
                   $cmda->save();
                   log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $type . '_off');
                 }
