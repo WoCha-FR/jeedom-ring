@@ -528,7 +528,7 @@ class mqttRing extends eqLogic
                 log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Info ', __FILE__) . $uniqID . ':' . $type);
               }
               if( $type == 'light') {
-                $cmd->setGeneric_type('LIGHT_STATE_BOOL');
+                $cmd->setGeneric_type('LIGHT_STATE');
                 $cmd->setTemplate('dashboard', 'core::light');
                 $cmd->setTemplate('mobile', 'core::light');
               } else if( $type == 'siren' || $type == 'fire' || $type == 'police' ) {
@@ -573,7 +573,7 @@ class mqttRing extends eqLogic
               // Création ACTION ON & OFF si besoin
               if( $type == 'light') {
                 // ON
-                $cmdaLogicId = substr($data["command_topic"], $_subtopicStart . '%ON');
+                $cmdaLogicId = substr($data["command_topic"], $_subtopicStart) . '%ON';
                 $cmda = $eqLogic->getCmd('action', $cmdaLogicId);
                 if (!is_object($cmda)) {
                   $cmda = new mqttRingCmd();
@@ -590,7 +590,7 @@ class mqttRing extends eqLogic
                   log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Ajout commande Action ', __FILE__) . $uniqID . ':' . $type . '_on');
                 }
                 // OFF
-                $cmdaLogicId = substr($data["command_topic"], $_subtopicStart . '%OFF');
+                $cmdaLogicId = substr($data["command_topic"], $_subtopicStart) . '%OFF';
                 $cmda = $eqLogic->getCmd('action', $cmdaLogicId);
                 if (!is_object($cmda)) {
                   $cmda = new mqttRingCmd();
