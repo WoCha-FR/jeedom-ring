@@ -28,7 +28,8 @@
     "Extérieur": "Away",
     "Armement": "Arming",
     "Attente Code": "Pending",
-    "En alarme": "Triggered"
+    "En alarme": "Triggered",
+    "Valeur reçue pour la commande": "Value received for the command"
   },
   "plugins/mqttRing/desktop/js/mqttRing.js": {
     "Afficher": "Post",

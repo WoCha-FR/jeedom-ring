@@ -28,7 +28,8 @@
     "Extérieur": "Exterior",
     "Armement": "Armado",
     "Attente Code": "Código de espera",
-    "En alarme": "En alarma"
+    "En alarme": "En alarma",
+    "Valeur reçue pour la commande": "Valor recibido por el pedido"
   },
   "plugins/mqttRing/desktop/js/mqttRing.js": {
     "Afficher": "Exponer",
