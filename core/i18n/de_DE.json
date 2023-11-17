@@ -28,7 +28,8 @@
     "Extérieur": "Außen",
     "Armement": "Bewaffnung",
     "Attente Code": "Warten Code",
-    "En alarme": "In Alarm"
+    "En alarme": "In Alarm",
+    "Valeur reçue pour la commande": "Empfangener Wert für die Bestellung"
   },
   "plugins/mqttRing/desktop/js/mqttRing.js": {
     "Afficher": "Bereitstellen",

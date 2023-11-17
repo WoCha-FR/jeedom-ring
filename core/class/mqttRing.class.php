@@ -78,8 +78,10 @@ class mqttRing extends eqLogic
           // Commande Existante
           $cmd = $eqLogic->getCmd('info', $_cmdLogicalId);
           // Commande Inexistante
-          if (!is_object($cmd) && (config::byKey('ring::allcmd', __CLASS__, 'non') !== 'non')) {
-            log::add(__CLASS__, 'debug', __('Commande ', __FILE__) . $_cmdLogicalId . __(' inconnue dans l\'equipement ', __FILE__) . $_eqLogicalId);
+          if (!is_object($cmd)) {
+            if (config::byKey('ring::allcmd', __CLASS__, 'non') !== 'non') {
+              log::add(__CLASS__, 'debug', __('Commande ', __FILE__) . $_cmdLogicalId . __(' inconnue dans l\'equipement ', __FILE__) . $_eqLogicalId);
+            }
             continue;
           }
           // Traduction des états
@@ -104,7 +106,7 @@ class mqttRing extends eqLogic
                 break;
               case "arming":
                 $_value = __('Armement', __FILE__);
-                $eqLogic->checkAndUpdateCmd('alarmactive', 1);
+                $eqLogic->checkAndUpdateCmd('alarmactive', 0);
                 $eqLogic->checkAndUpdateCmd('enalarme', 1);
                 break;
               case "pending":
@@ -129,6 +131,7 @@ class mqttRing extends eqLogic
             }
           }
           // Mise à jour
+          log::add(__CLASS__, 'debug', __('Valeur reçue pour la commande', __FILE__) . ' ' . $_cmdLogicalId . ' : ' . $_value);
           $eqLogic->checkAndUpdateCmd($_cmdLogicalId, $_value);
         }
       }

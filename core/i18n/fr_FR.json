@@ -28,7 +28,8 @@
     "Extérieur": "Extérieur",
     "Armement": "Armement",
     "Attente Code": "Attente Code",
-    "En alarme": "En alarme"
+    "En alarme": "En alarme",
+    "Valeur reçue pour la commande": "Valeur reçue pour la commande"
   },
   "plugins/mqttRing/desktop/js/mqttRing.js": {
     "Afficher": "Afficher",
