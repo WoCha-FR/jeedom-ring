@@ -759,7 +759,9 @@ class mqttRing extends eqLogic
     if ($deamon_info['launchable'] != 'ok') {
       throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
     }
-
+    /* Nettoyage anciens Topic MQTT */
+    mqtt2::removePluginTopicByPlugin(__CLASS__);
+    /* On enregistre le topic actuel */
     mqtt2::addPluginTopic(__CLASS__, config::byKey('mqtt::topic', __CLASS__, 'ring'));
     $mqttInfos = mqtt2::getFormatedInfos();
     log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('Informations reçues de MQTT Manager', __FILE__) . ' : ' . json_encode($mqttInfos));
