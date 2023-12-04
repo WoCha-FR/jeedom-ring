@@ -9,6 +9,9 @@
 >
 >Wenn es keine Informationen über die Aktualisierung gibt, handelt es sich nur um eine Aktualisierung der Dokumentation, der Übersetzung oder des Textes.
 
+# 04/12/2023
+- Fehler behoben, durch den das alte Topic nicht gelöscht wurde, wenn es geändert wurde.
+
 # 12/11/2023
 - Unbekannte Befehle werden nicht mehr im Log angezeigt. Reaktivierung in der Konfiguration möglich.
 - An-/Aus-Aktion für Lichter erstellen.

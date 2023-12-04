@@ -9,6 +9,9 @@
 >
 >Si no hay información sobre la actualización, significa que sólo se trata de actualizaciones de documentación, traducción o texto.
 
+# 04/12/2023
+- Solucionado el problema de no borrar el tema antiguo al cambiarlo.
+
 # 12/11/2023
 - Los comandos desconocidos ya no se muestran en el registro. Reactivación posible en configuración.
 - Acción de encendido / apagado creada para las luces.

@@ -9,6 +9,9 @@
 >
 >S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte.
 
+# 04/12/2023
+- Correction erreur de non suppression de l'ancien topic lors d'un changement de ce dernier.
+
 # 12/11/2023
 - Les commandes inconnues ne sont plus affichés dans le log. Réactivation possible dans la configuration.
 - Création action On / Off pour les lumières.
