@@ -219,6 +219,10 @@ class mqttRing extends eqLogic
             $eqLogic->setConfiguration("ringImage", "intercom");
             $eqLogic->save();
             break;
+          case 'Outdoor Siren':
+            $eqLogic->setConfiguration("ringImage", "outsiren");
+            $eqLogic->save();
+            break;
           case 'Chime':
           case 'Chime Pro':
           case 'Chime v2':
@@ -255,6 +259,8 @@ class mqttRing extends eqLogic
             $eqLogic->setConfiguration("ringImage", "camera");
             $eqLogic->save();
             break;
+          default:
+          $eqLogic->save();
         }
       }
       // Préparation des cmdLogicId
