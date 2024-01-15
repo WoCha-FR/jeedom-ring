@@ -9,6 +9,9 @@
 >
 >Wenn es keine Informationen über die Aktualisierung gibt, handelt es sich nur um eine Aktualisierung der Dokumentation, der Übersetzung oder des Textes.
 
+# 15/01/2023
+- Bild hinzufügen Außensirene
+
 # 04/12/2023
 - Fehler behoben, durch den das alte Topic nicht gelöscht wurde, wenn es geändert wurde.
 

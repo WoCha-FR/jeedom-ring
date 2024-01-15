@@ -9,6 +9,9 @@
 >
 >Si no hay información sobre la actualización, significa que sólo se trata de actualizaciones de documentación, traducción o texto.
 
+# 15/01/2023
+- Añadir imagen Sirena exterior
+
 # 04/12/2023
 - Solucionado el problema de no borrar el tema antiguo al cambiarlo.
 
