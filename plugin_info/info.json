@@ -9,7 +9,7 @@
   },
   "licence": "AGPL",
   "author": "Wocha",
-  "require": "4.2",
+  "require": "4.3",
   "category": "security",
   "hasDependency": true,
   "hasOwnDeamon": true,
