@@ -9,6 +9,9 @@
 >
 >If there is no information about the update, it means that it is only for documentation, translation or text updates.
 
+# 15/01/2023
+- Add picture for Outdoor Siren
+
 # 04/12/2023
 - Fixed the problem of not deleting the old topic when changing it.
 
