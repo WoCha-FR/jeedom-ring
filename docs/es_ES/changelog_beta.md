@@ -9,6 +9,9 @@
 >
 >Si no hay información sobre la actualización, significa que sólo se trata de actualizaciones de documentación, traducción o texto.
 
+# 30/08/2024
+- Actualización de la biblioteca de anillos a la versión 5.7.1
+
 # 15/01/2023
 - Añadir imagen Sirena exterior
 
