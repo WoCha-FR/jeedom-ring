@@ -10,7 +10,7 @@
 >If there is no information about the update, it means that it is only for documentation, translation or text updates.
 
 # 30/08/2024
-- Update ring library to version 5.7.1
+- Update ring library to version 5.6.7
 
 # 15/01/2023
 - Add picture for Outdoor Siren

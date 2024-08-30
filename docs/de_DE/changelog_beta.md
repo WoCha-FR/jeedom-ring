@@ -10,7 +10,7 @@
 >Wenn es keine Informationen über die Aktualisierung gibt, handelt es sich nur um eine Aktualisierung der Dokumentation, der Übersetzung oder des Textes.
 
 # 30/08/2024
-- Aktualisierung der Ringbibliothek auf Version 5.7.1
+- Aktualisierung der Ringbibliothek auf Version 5.6.7
 
 # 15/01/2023
 - Bild hinzufügen Außensirene
