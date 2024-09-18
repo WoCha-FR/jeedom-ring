@@ -2,12 +2,17 @@
 
 >**IMPORTANT**
 >
->La librairie utilisée par le plugin nécessite nodeJS 18 pour un fonctionnement optimal.
->Il est donc recommandé de mettre a jour Jeedom à la version 4.3.19 pour éviter des fonctionnements anormaux.
+>La librairie utilisée par le plugin nécessite nodeJS 20 pour un fonctionnement optimal.
+>Il est donc recommandé de mettre a jour Jeedom à la version 4.4.17 sous debian 11 pour éviter des fonctionnements anormaux.
 
 >**IMPORTANT**
 >
 >S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte.
+
+# 17/09/2024
+- Debian 11 minimum
+- NodeJS 20 minimum
+- Mise à jour librairie ring à la version 5.7.1
 
 # 30/08/2024
 - Mise à jour librairie ring à la version 5.6.7

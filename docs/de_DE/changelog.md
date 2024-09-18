@@ -2,12 +2,17 @@
 
 >**WICHTIG**
 >
->Die vom Plugin verwendete Bibliothek benötigt nodeJS 18, um optimal zu funktionieren.
->Es wird daher empfohlen, Jeedom auf die Version 4.3.19 zu aktualisieren, um abnormale Funktionsweisen zu vermeiden.
+>Die vom Plugin verwendete Bibliothek benötigt nodeJS 20, um optimal zu funktionieren.
+>Es wird daher empfohlen, Jeedom auf die Version 4.4.17 unter debian 11 zu aktualisieren, um abnormale Funktionsweisen zu vermeiden.
 
 >**WICHTIG**
 >
 >Wenn es keine Informationen über die Aktualisierung gibt, handelt es sich nur um eine Aktualisierung der Dokumentation, der Übersetzung oder des Textes.
+
+# 17/09/2024
+- Debian 11 Minimum
+- NodeJS 20 Minimum
+- Aktualisierung der Ringbibliothek auf Version 5.7.1
 
 # 02/09/2024
 - Aktualisierung der Ringbibliothek auf Version 5.6.7

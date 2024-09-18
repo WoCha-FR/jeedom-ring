@@ -2,14 +2,14 @@
   "id": "mqttRing",
   "name": "MQTT Ring",
   "description": {
-    "fr_FR" : "Plugin permettant d'intéragir avec un système RING depuis Jeedom<br/><b>Requiert Jeedom v4.3.18 (nodeJS 18) pour un fonctionnement optimal.</b>",
-    "en_US" : "Plugin to interact with a RING system from Jeedom<br/><b>Requires Jeedom v4.3.18 (nodeJS 18) for optimal performance.</b>",
-    "es_ES" : "Plugin para interactuar con un sistema RING de Jeedom<br/><b>Requiere Jeedom v4.3.18 (nodeJS 18) para un rendimiento óptimo.</b>",
-    "de_DE" : "Plugin, um von Jeedom aus mit einem RING-System zu interagieren<br/><b>Erfordert Jeedom v4.3.18 (nodeJS 18), um optimal zu funktionieren.</b>"
+    "fr_FR" : "Plugin permettant d'intéragir avec un système RING depuis Jeedom<br/><b>Requiert Jeedom v4.4.17 (nodeJS 20) pour un fonctionnement optimal.</b>",
+    "en_US" : "Plugin to interact with a RING system from Jeedom<br/><b>Requires Jeedom v4.4.17 (nodeJS 20) for optimal performance.</b>",
+    "es_ES" : "Plugin para interactuar con un sistema RING de Jeedom<br/><b>Requiere Jeedom v4.4.17 (nodeJS 20) para un rendimiento óptimo.</b>",
+    "de_DE" : "Plugin, um von Jeedom aus mit einem RING-System zu interagieren<br/><b>Erfordert Jeedom v4.4.17 (nodeJS 20), um optimal zu funktionieren.</b>"
   },
   "licence": "AGPL",
   "author": "Wocha",
-  "require": "4.3",
+  "require": "4.4.17",
   "category": "security",
   "hasDependency": true,
   "hasOwnDeamon": true,
@@ -27,5 +27,8 @@
       "v4",
       "atlas",
       "smart"
-  ]
+  ],
+  "os": {
+		"min": 11
+	}
 }

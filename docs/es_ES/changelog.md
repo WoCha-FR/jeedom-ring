@@ -2,12 +2,17 @@
 
 >**IMPORTANTE**
 >
->La biblioteca utilizada por el plugin requiere nodeJS 18 para un rendimiento óptimo.
->Por lo tanto, se recomienda actualizar Jeedom a la versión 4.3.19 para evitar un funcionamiento anormal.
+>La biblioteca utilizada por el plugin requiere nodeJS 20 para un rendimiento óptimo.
+>Por lo tanto, se recomienda actualizar Jeedom a la versión 4.4.17 bajo debian 11 para evitar un funcionamiento anormal.
 
 >**IMPORTANTE**
 >
 >Si no hay información sobre la actualización, significa que sólo se trata de actualizaciones de documentación, traducción o texto.
+
+# 17/09/2024
+- Debian 11 mínimo
+- NodeJS 20 mínimo
+- Actualización de la biblioteca de anillos a la versión 5.7.1
 
 # 02/09/2024
 - Actualización de la biblioteca de anillos a la versión 5.6.7
