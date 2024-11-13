@@ -9,6 +9,9 @@
 >
 >S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte.
 
+# 13/11/2024
+- Mise à jour librairie ring à la version 5.7.2
+
 # 17/09/2024
 - Debian 11 minimum
 - NodeJS 20 minimum

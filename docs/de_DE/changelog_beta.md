@@ -9,6 +9,9 @@
 >
 >Wenn es keine Informationen über die Aktualisierung gibt, handelt es sich nur um eine Aktualisierung der Dokumentation, der Übersetzung oder des Textes.
 
+# 13/11/2024
+- Aktualisierung der Ringbibliothek auf Version 5.7.2
+
 # 17/09/2024
 - Debian 11 Minimum
 - NodeJS 20 Minimum
