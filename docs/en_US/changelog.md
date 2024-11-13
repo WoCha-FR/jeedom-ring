@@ -9,6 +9,9 @@
 >
 >If there is no information about the update, it means that it is only for documentation, translation or text updates.
 
+# 13/11/2024
+- Update ring library to version 5.7.2
+
 # 17/09/2024
 - Debian 11 minimum
 - NodeJS 20 minimum

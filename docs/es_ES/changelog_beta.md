@@ -9,6 +9,9 @@
 >
 >Si no hay información sobre la actualización, significa que sólo se trata de actualizaciones de documentación, traducción o texto.
 
+# 13/11/2024
+- Actualización de la biblioteca de anillos a la versión 5.7.2
+
 # 17/09/2024
 - Debian 11 mínimo
 - NodeJS 20 mínimo

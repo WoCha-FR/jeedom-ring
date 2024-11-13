@@ -20,6 +20,19 @@ function mqttRing_install() {
 }
 
 function mqttRing_update() {
+  // Mise a jour librairie
+  $pluginId = 'mqttRing';
+  $dependencyInfo = mqttRing::dependancy_info();
+  if (!isset($dependencyInfo['state'])) {
+    message::add($pluginId, __('Veuilez vérifier les dépendances', __FILE__));
+  } elseif ($dependencyInfo['state'] == 'nok') {
+    try {
+      $plugin = plugin::byId($pluginId);
+      $plugin->dependancy_install();
+    } catch (\Throwable $th) {
+      message::add($pluginId, __('Cette mise à jour nécessite de réinstaller les dépendances même si elles sont marquées comme OK', __FILE__));
+    }
+  }
   // Mise a jour Délai Warning
   foreach (eqLogic::byType('mqttRing') as $eqLogic) {
     $cmd = $eqLogic->getCmd('info', 'status');
