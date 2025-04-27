@@ -28,6 +28,7 @@ Seit September 2024 benötigt das Plugin Jeedom 4.4.17 (nodeJS v20), um optimal 
 ![Konfiguration](../images/configuration.png)
 
 - **Root-Topic**: Root-Topic, auf das Jeedom hören soll.
+- **Nur die Seite mit der ID** : Ermöglicht den Abruf nur des Standorts mit der eingegebenen ID.
 - **Kameraaktivierung**: Ermöglicht das Abrufen und Steuern von Kameras zusätzlich zum Alarm.
 - **Modi aktivieren**: Ermöglicht es, das Bedienfeld der Alarmanlage für einen Standort zu simulieren, der nur über Kameras verfügt.
 - **Aktivierung der Panik-Schaltflächen**: Ermöglicht die Erstellung der Schaltflächen "Feuer" & "Polizei".

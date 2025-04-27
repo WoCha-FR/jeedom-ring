@@ -9,6 +9,10 @@
 >
 >Wenn es keine Informationen über die Aktualisierung gibt, handelt es sich nur um eine Aktualisierung der Dokumentation, der Übersetzung oder des Textes.
 
+# 27/04/2025
+- Aktualisierung der Ringbibliothek auf Version 5.7.3
+- Möglichkeit, nur einen Standort abzurufen
+
 # 13/11/2024
 - Aktualisierung der Ringbibliothek auf Version 5.7.2
 

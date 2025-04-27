@@ -9,6 +9,10 @@
 >
 >S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte.
 
+# 27/04/2025
+- Mise à jour librairie ring à la version 5.7.3
+- Possibilité de ne récupérer qu'un seul site
+
 # 13/11/2024
 - Mise à jour librairie ring à la version 5.7.2
 

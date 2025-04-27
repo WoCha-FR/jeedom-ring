@@ -28,6 +28,7 @@ Desde septiembre de 2024, el plugin requiere Jeedom 4.4.17 (nodeJS v20) para un 
 Configuración](../images/configuration.png)
 
 - **Tema raíz**: Tema raíz que Jeedom debe escuchar
+- **Sólo el sitio con el ID** : Recupera sólo el sitio con el ID introducido.
 - **Activación de cámaras**: Permite recuperar y controlar cámaras además de la alarma.
 - **Activación de modos**: Permite simular el panel de control de alarma para un sitio con sólo cámaras.
 - **Activación de Botones de Pánico**: Permite la creación de botones de "Fuego" y "Policía".
