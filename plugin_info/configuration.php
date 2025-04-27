@@ -25,33 +25,39 @@ if (!isConnect()) {
 <form class="form-horizontal">
   <fieldset>
     <div class="form-group">
-    <label class="col-md-4 control-label">{{Version Librairie RING}}</label>
-    <div class="col-md-3">
-    <?php
-      $file = dirname(__FILE__) . '/../resources/ring-mqtt/package.json';
-      $package = array();
-      if (file_exists($file)) {
-        $package = json_decode(file_get_contents($file), true);
-      }
-      if (isset($package['version'])){
-        config::save('ringmqttVersion', $package['version'], 'mqttRing');
-      }
-      $localVersion = config::byKey('ringmqttVersion', 'mqttRing', 'N/A');
-      $wantedVersion = config::byKey('ringmqttRequire', 'mqttRing', '');
-      if ($localVersion != $wantedVersion) {
-        echo '<span class="label label-warning">' . $localVersion . '</span><br>';
-        echo "<div class='alert alert-danger text-center'>{{Le plugin nécessite la version}} <code>" . $wantedVersion . '</code><br />';
-        echo "{{Veuillez relancer les dépendances pour mettre à jour la librairie. Relancez ensuite le démon pour voir la nouvelle version.}}</div>";
-      } else {
-        echo '<span class="label label-success">' . $localVersion . '</span><br>';
-      }
-    ?>
-    </div>
+      <label class="col-md-4 control-label">{{Version Librairie RING}}</label>
+      <div class="col-md-3">
+        <?php
+        $file = dirname(__FILE__) . '/../resources/ring-mqtt/package.json';
+        $package = array();
+        if (file_exists($file)) {
+          $package = json_decode(file_get_contents($file), true);
+        }
+        if (isset($package['version'])) {
+          config::save('ringmqttVersion', $package['version'], 'mqttRing');
+        }
+        $localVersion = config::byKey('ringmqttVersion', 'mqttRing', 'N/A');
+        $wantedVersion = config::byKey('ringmqttRequire', 'mqttRing', '');
+        if ($localVersion != $wantedVersion) {
+          echo '<span class="label label-warning">' . $localVersion . '</span><br>';
+          echo "<div class='alert alert-danger text-center'>{{Le plugin nécessite la version}} <code>" . $wantedVersion . '</code><br />';
+          echo "{{Veuillez relancer les dépendances pour mettre à jour la librairie. Relancez ensuite le démon pour voir la nouvelle version.}}</div>";
+        } else {
+          echo '<span class="label label-success">' . $localVersion . '</span><br>';
+        }
+        ?>
+      </div>
     </div>
     <div class="form-group">
       <label class="col-md-4 control-label">{{Topic racine}}</label>
       <div class="col-md-3">
         <input class="configKey form-control" data-l1key="mqtt::topic" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">{{Uniquement le site avec l'ID}}</label>
+      <div class="col-md-3">
+        <input class="configKey form-control" data-l1key="ring::location" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" />
       </div>
     </div>
     <div class="form-group">
@@ -124,7 +130,7 @@ if (!isConnect()) {
       topPosition + ",toolbar=no,menubar=no,scrollbars=no,location=no,directories=no");
 
     if (nouvellefenetre) { //securité pour fermer la fenetre si le focus est perdu
-      window.onfocus = function () {
+      window.onfocus = function() {
         nouvellefenetre.window.close();
       }
     }
