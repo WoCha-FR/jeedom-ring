@@ -32,6 +32,7 @@ Since September 2024, the plugin require Jeedom 4.4.17 (nodeJS v20) for optimal 
 - **Camera activation**: Allows you to retrieve and control cameras in addition to the alarm.
 - **Activation of modes**: Allows you to simulate the alarm control panel for a site with only cameras.
 - **Panic Button Activation** : Allow the creation of "Fire" & "Police" buttons.
+- **Display unknown commands in the DEBUG log** : Displays the commands not configured in each device in the log.
 - **RING Authentication**: Link to RING authentication and to view its status.
 
 ## RING Account Setup

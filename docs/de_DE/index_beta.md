@@ -32,6 +32,7 @@ Seit September 2024 benötigt das Plugin Jeedom 4.4.17 (nodeJS v20), um optimal 
 - **Kameraaktivierung**: Ermöglicht das Abrufen und Steuern von Kameras zusätzlich zum Alarm.
 - **Modi aktivieren**: Ermöglicht es, das Bedienfeld der Alarmanlage für einen Standort zu simulieren, der nur über Kameras verfügt.
 - **Aktivierung der Panik-Schaltflächen**: Ermöglicht die Erstellung der Schaltflächen "Feuer" & "Polizei".
+- **Unbekannte Befehle im DEBUG-Log anzeigen** : Zeigt die nicht konfigurierten Befehle in jedem Gerät im Log an.
 - **RING-Authentifizierung**: Link zur RING-Authentifizierung und um deren Status zu sehen.
 
 ## Einrichten des RING-Kontos
