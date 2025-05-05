@@ -794,7 +794,7 @@ class mqttRing extends eqLogic
       'enable_panic' => false,
       'hass_topic' => config::byKey('mqtt::topic', __CLASS__, 'ring') . '/jeedom',
       'ring_topic' => config::byKey('mqtt::topic', __CLASS__, 'ring'),
-      'location_ids' => ['']
+      'location_ids' => [config::byKey('ring::location', __CLASS__, '')]
     ];
     // Activation caméras
     if ( config::byKey('ring::cameras', __CLASS__, 'non') !== 'non') {

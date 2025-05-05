@@ -96,6 +96,7 @@
     "Ouvrir": "Open",
     "Récupere les caméras, sonnette & chimes": "Recover cameras, doorbells & chimes",
     "Topic racine": "Root topic",
+    "Uniquement le site avec l'ID": "Only the location with ID",
     "Version Librairie RING": "RING library version",
     "Le plugin nécessite la version": "The plugin requires version",
     "Veuillez relancer les dépendances pour mettre à jour la librairie. Relancez ensuite le démon pour voir la nouvelle version.": "Please restart the dependencies to update the library. Then restart the daemon to see the new version."
