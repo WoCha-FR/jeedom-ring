@@ -25,7 +25,7 @@ Desde septiembre de 2024, el plugin requiere Jeedom 4.4.17 (nodeJS v20) para un 
 
 ## Parámetros de configuración :
 
-Configuración](../images/configuration.png)
+![Configuración](../images/configuration.png)
 
 - **Tema raíz**: Tema raíz que Jeedom debe escuchar
 - **Sólo el sitio con el ID** : Recupera sólo el sitio con el ID introducido.

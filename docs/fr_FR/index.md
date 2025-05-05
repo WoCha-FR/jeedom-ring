@@ -28,9 +28,11 @@ Depuis septembre 2024, le plugin requiert Jeedom 4.4.17 (nodeJS v20) pour un fon
 ![Configuration](../images/configuration.png)
 
 - **Topic racine** : Sujet racine que Jeedom doit écouter
+- **Uniquement le site avec l'ID** : Permet de récupérer uniquement le site avec l'ID saisi.
 - **Activation des caméras** : Permet de récupérer et piloter les caméras en plus de l'alarme.
 - **Activation des modes** : Permet de simuler le panneau de contrôle de l'alarme pour un site ne disposant que de caméras.
 - **Activation des boutons Panique** : Autoriser la création des boutons "Incendie" & "Police".
+- **Afficher les commandes inconnues dans le log DEBUG** : Affiche les commandes non configurées dans chaque équipement dans le log.
 - **Identification RING** : Lien vers l'authentification RING et pour voir son statut.
 
 ## Configuration du compte RING
