@@ -100,5 +100,10 @@
     "Version Librairie RING": "RING library version",
     "Le plugin nécessite la version": "The plugin requires version",
     "Veuillez relancer les dépendances pour mettre à jour la librairie. Relancez ensuite le démon pour voir la nouvelle version.": "Please restart the dependencies to update the library. Then restart the daemon to see the new version."
+  },
+  "plugins/mqttRing/plugin_info/install.php": {
+    "Installation des dépendances": "Installation of dependencies",
+    "Veuilez vérifier les dépendances": "Please check the dependencies",
+    "Cette mise à jour nécessite de réinstaller les dépendances même si elles sont marquées comme OK": "This update requires you to reinstall dependencies even if they are marked as OK"
   }
 }

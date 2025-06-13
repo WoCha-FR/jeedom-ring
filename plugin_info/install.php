@@ -17,6 +17,11 @@
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
 function mqttRing_install() {
+  // Install libs
+  $pluginId = basename(realpath(__DIR__ . '/..'));
+  message::add($pluginId, __('Installation des dépendances', __FILE__));
+  $plugin = plugin::byId($pluginId);
+  $plugin->dependancy_install();
 }
 
 function mqttRing_update() {
