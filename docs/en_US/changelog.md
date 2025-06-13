@@ -9,6 +9,9 @@
 >
 >If there is no information about the update, it means that it is only for documentation, translation or text updates.
 
+# 2025-06-13
+- Update ring library to version 5.8.1
+
 # 2025-05-05
 - Update ring library to version 5.7.3
 - Only one location can be retrieved
